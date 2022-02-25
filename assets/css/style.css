@@ -34,7 +34,7 @@ html {
     --color-dark-very-dark-blue: hsl(235, 21%, 11%);
     --color-dark-very-dark-desaturated-blue: hsl(235, 24%, 19%);
     --color-dark-light-grayish-blue: hsl(234, 39%, 85%);
-    --color-dark-light-grayish-blue-hover: hsl(236, 33 %, 92 %);
+    --color-dark-light-grayish-blue-hover: hsl(236, 33%, 92%);
     --color-dark-dark-grayish-blue: hsl(234, 11%, 52%);
     --color-dark-very-dark-grayish-blue: hsl(233, 14%, 35%);
     --color-dark-very-dark-grayish-blue-alt: hsl(237, 14%, 26%);
@@ -43,7 +43,7 @@ html {
     --color-body-bg: var(--color-very-light-grayish-blue);
     --color: var(--color-black);
     --color-b: var(--color-very-light-gray);
-    --color-state:var(--color-dark-grayish-blue);
+    --color-state: var(--color-dark-grayish-blue);
     --color-state-active: blue;
     --color-state-hover: var(--color-dark-light-grayish-blue-hover);
     --color-state-disabled: var(--color-dark-grayish-blue);
@@ -85,15 +85,33 @@ figure {
     padding: 0;
 }
 
+@font-face {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/josefin-sans-v23-latin/josefin-sans-v23-latin-regular.woff2') format('woff2'),
+    url('../fonts/josefin-sans-v23-latin/josefin-sans-v23-latin-regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/josefin-sans-v23-latin/josefin-sans-v23-latin-700.woff2') format('woff2'),
+    url('../fonts/josefin-sans-v23-latin/josefin-sans-v23-latin-700.woff') format('woff');
+}
+
+body {
+    font: normal 400 1.8rem/1.6 'Josefin Sans', sans-serif;
+}
+
 /**
  * Sticky footer.
  */
-
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: var(--color-neutral-light-grayish-blue);
 }
 
 body > header,
@@ -114,13 +132,4 @@ body > main {
     max-width: var(--base-width-max-width);
     margin-right: auto;
     margin-left: auto;
-}
-
-/**
- * Color scheme.
- */
-:root {
-    --body: var(--color-black);
-    --color: var(--color-black);
-    --bg-color: var(--color-white);
 }
