@@ -242,30 +242,32 @@ body > main {
 }
 
 .todo-item__label::before {
+    overflow: hidden;
     content: '';
     display: block;
     flex: 0 0 auto;
     width: 2.4rem;
     height: 2.4rem;
-    border: solid 2px var(--color-light-grayish-blue);
+    border: solid 0px transparent;
     border-image-slice: 1;
     border-radius: 50%;
     margin-right: 2.4rem;
     vertical-align: middle;
-    background-image: var(--checkbox-gradient-inner), url('../../images/icon-check.svg'), var(--checkbox-gradient);
-    background-size: 100% 100%, 0%, 100% 100%;
+    background-image: var(--checkbox-gradient-inner),
+    url('../../images/icon-check.svg'),
+    radial-gradient(closest-side, var(--color-light-grayish-blue), var(--color-light-grayish-blue) 99.9%, rgba(255, 255, 255, 0) 100%),
+    var(--checkbox-gradient);
+    background-size: calc(100% - 4px) calc(100% - 4px), 0%, 100%, 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
-    transition: background .2s;
 }
 
-.todo-item__checkbox:checked + .todo-item__label::before,
 .todo-item__label:hover::before {
-    border-image-source: var(--checkbox-gradient);
+    background-size: calc(100% - 4px) calc(100% - 4px), 50%, 0, 100% 100%;
 }
 
 .todo-item__checkbox:checked + .todo-item__label::before {
-    background-size: 0 0, 50%, 100% 100%;
+    background-size: 0 0, 50%, 0, 100% 100%;
 }
 
 .todo-item__checkbox:checked + .todo-item__label {
