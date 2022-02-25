@@ -47,11 +47,15 @@ html {
     --color-state-active: blue;
     --color-state-hover: var(--color-dark-light-grayish-blue-hover);
     --color-state-disabled: var(--color-dark-grayish-blue);
+    --color-in-header: var(--color-white);
 
     /* font-sizes */
     --font-size-90: 1.2rem;
     --font-size-100: 1.8rem;
     --font-size-110: 2.4rem;
+
+    /* settings */
+    --header-inset: 22rem;
 }
 
 /**
@@ -120,7 +124,6 @@ body > footer {
 }
 
 body > main {
-    display: flex;
     flex: 1 1 auto;
 }
 
@@ -132,4 +135,15 @@ body > main {
     max-width: var(--base-width-max-width);
     margin-right: auto;
     margin-left: auto;
+}
+
+.main::before {
+    content: '';
+    display: block;
+    min-height: calc(var(--header-inset + 2rem));
+    margin-bottom: calc(var(--header-inset) * -1);
+    padding-top: calc(300 / 1440 * 100%);
+    background-image: url('../../images/bg-desktop-light.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
