@@ -52,7 +52,7 @@ html {
     /* font-sizes */
     --font-size-90: 1.2rem;
     --font-size-100: 1.8rem;
-    --font-size-110: 2.4rem;
+    --font-size-110: 4rem;
 
     /* settings */
     --header-inset: 22rem;
@@ -154,4 +154,24 @@ body > main {
     background-image: url('../../images/bg-desktop-light.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    color: var(--color-in-header);
+    margin-bottom: 4rem;
+}
+
+.header-title__main {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: var(--font-size-110);
+    text-transform: uppercase;
+    letter-spacing: .3em;
+    font-weight: 400;
+}
+
+.header-title__action {
+    margin-left: auto;
 }
