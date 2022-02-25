@@ -89,6 +89,14 @@ figure {
     padding: 0;
 }
 
+button {
+    padding: 0;
+    color: inherit;
+    background-color: transparent;
+    appearance: none;
+    border: none;
+}
+
 @font-face {
     font-family: 'Josefin Sans';
     font-style: normal;
