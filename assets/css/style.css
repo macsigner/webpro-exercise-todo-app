@@ -18,7 +18,7 @@ html {
  * Side wide custom properties.
  */
 :root {
-    --base-width-max-width: 111rem;
+    --base-width-max-width: 54rem;
     --base-width-side-margin: 2rem;
 
     /* colors */
@@ -60,6 +60,7 @@ html {
     --default-radius: .4rem;
     --checkbox-gradient: linear-gradient(135deg, #77B4FF, #996ADE);
     --checkbox-gradient-inner: radial-gradient(closest-side, var(--color-bg), var(--color-bg) 99.9%, rgba(255, 255, 255, 0) 100%);
+    --list-padding: 1.8rem 2.2rem 1.4rem;
 }
 
 /**
@@ -203,7 +204,7 @@ body > main {
 .todo-item {
     display: flex;
     align-items: center;
-    padding: 1.8rem 2.2rem 1.4rem;
+    padding: var(--list-padding);
     border-bottom: solid 1px var(--color-divider);
     background-color: var(--color-bg);
     font-weight: 400;
@@ -285,4 +286,30 @@ body > main {
 
 .todo-item__input:focus {
     outline: none;
+}
+
+/**
+ * List footer.
+ */
+.list-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--list-padding);
+    background-color: var(--color-bg);
+    border-bottom-right-radius: var(--default-radius);
+    border-bottom-left-radius: var(--default-radius);
+}
+
+.list-footer__info,
+.list-footer__main,
+.list-footer__clear {
+    font-size: var(--font-size-90);
+}
+
+.list-footer__main {
+    display: flex;
+}
+
+.list-footer__main > * + * {
+    margin-left: 2.6rem;
 }
