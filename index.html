@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Todo app</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="stylesheet" href="assets/libs/normalize/normalize.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+    <title>Frontend Mentor | Todo app</title>
+
 </head>
 <body>
+<main>
+    <section>
+        <h1>Todo</h1>
+        <div>
+            <input type="text" id="add-todo">
+        </div>
+        <div>
+            <ul>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Blanditiis harum laboriosam nisi odio?</li>
+                <li>Ab fuga odio reiciendis sed.</li>
+                <li>Adipisci aperiam eaque in vitae.</li>
+                <li>Animi asperiores dicta eius tempore!</li>
+                <li>Assumenda incidunt maiores odio vero!</li>
+            </ul>
 
-  Todo
-
-  <!-- Add dynamic number --> items left
-
-  All
-  Active 
-  Completed
-
-  Clear Completed
-
-  Drag and drop to reorder list
-
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+            <div>
+                <span><span><!-- Add dynamic number --></span> items left</span>
+                <span>All</span>
+                <span>Active</span>
+                <span>Completed</span>
+                <span>Clear Completed</span>
+            </div>
+        </div>
+        <footer>Drag and drop to reorder list</footer>
+    </section>
+</main>
 </body>
 </html>
