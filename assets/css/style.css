@@ -224,7 +224,8 @@ body > main {
     position: absolute;
     width: 0;
     height: 0;
-    visibility: hidden;
+    overflow: hidden;
+    opacity: 0;
 }
 
 .todo-item__label,
@@ -263,7 +264,8 @@ body > main {
 }
 
 .todo-item__label:hover::before,
-.todo-item:focus-within .todo-item__label::before {
+.todo-item:focus-within .todo-item__label::before,
+.todo-item__checkbox:focus + .todo-item__label::before {
     background-size: calc(100% - 4px) calc(100% - 4px), 50%, 0, 100% 100%;
 }
 
