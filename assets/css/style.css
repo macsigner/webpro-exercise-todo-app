@@ -333,3 +333,14 @@ body > main {
 .todo-counter__amount::after {
     content: counter(todo-item);
 }
+
+/**
+ * Info footer.
+ */
+
+.info-footer {
+    margin-top: 4.4rem;
+    font-size: var(--font-size-90);
+    text-align: center;
+    color: var(--color-state-disabled)
+}
