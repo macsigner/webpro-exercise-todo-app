@@ -1,0 +1,105 @@
+/**
+ * Adjust box sizing on site.
+ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/**
+ * Adjust font size for easier px to rem conversion.
+ */
+html {
+    font-size: 62.5%;
+}
+
+/**
+ * Side wide custom properties.
+ */
+:root {
+    --base-width-max-width: 111rem;
+    --base-width-side-margin: 2rem;
+
+    /* colors */
+    --color-black: #000;
+    --color-white: #fff;
+
+    /* font-sizes */
+    --font-size-90: 1.4rem;
+    --font-size-100: 1.6rem;
+    --font-size-110: 2rem;
+}
+
+/**
+ * Remove annoying empty space below inline-block elements.
+ */
+img,
+[style*='inline-block' i],
+svg,
+canvas,
+picture {
+    vertical-align: middle;
+}
+
+img,
+svg {
+    height: auto;
+    max-width: 100%;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+li,
+blockquote,
+figure {
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ * Sticky footer.
+ */
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--color-neutral-light-grayish-blue);
+}
+
+body > header,
+body > footer {
+    flex: 0 0 auto;
+}
+
+body > main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 auto;
+}
+
+/**
+ * Add base width to handle horizontal alignment.
+ */
+.base-width {
+    width: calc(100% - (2 * var(--base-width-side-margin)));
+    max-width: var(--base-width-max-width);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/**
+ * Color scheme.
+ */
+:root {
+    --body: var(--color-black);
+    --color: var(--color-black);
+    --bg-color: var(--color-white);
+}
