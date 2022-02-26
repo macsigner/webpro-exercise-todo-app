@@ -3,7 +3,9 @@
  */
 .info-footer {
     margin-top: 4.4rem;
+    font-size: $font-size-90;
     font-size: var(--font-size-90);
     text-align: center;
-    color: var(--color-state-disabled)
+    color: $color-state-disabled;
+    color: var(--color-state-disabled);
 }

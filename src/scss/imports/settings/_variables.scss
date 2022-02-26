@@ -1,0 +1,46 @@
+/**
+ * Settings variables.
+ */
+$base-width-max-width: 54rem;
+$base-width-side-margin: 2rem;
+
+/* colors */
+$color-black: #000;
+$color-white: #FFF;
+/* colors light */
+$color-very-light-gray: hsl(0, 0%, 98%);
+$color-very-light-grayish-blue: hsl(236, 33%, 92%);
+$color-light-grayish-blue: hsl(233, 11%, 84%);
+$color-dark-grayish-blue: hsl(236, 9%, 61%);
+$color-very-dark-grayish-blue: hsl(235, 19%, 35%);
+/* colors dark */
+$color-dark-very-dark-blue: hsl(235, 21%, 11%);
+$color-dark-very-dark-desaturated-blue: hsl(235, 24%, 19%);
+$color-dark-light-grayish-blue: hsl(234, 39%, 85%);
+$color-dark-light-grayish-blue-hover: hsl(236, 33%, 92%);
+$color-dark-dark-grayish-blue: hsl(234, 11%, 52%);
+$color-dark-very-dark-grayish-blue: hsl(233, 14%, 35%);
+$color-dark-very-dark-grayish-blue-alt: hsl(237, 14%, 26%);
+
+/* colors modes */
+$color-body-bg: $color-very-light-grayish-blue;
+$color: $color-black;
+$color-bg: $color-very-light-gray;
+$color-state: $color-dark-grayish-blue;
+$color-state-active: blue;
+$color-state-hover: $color-dark-light-grayish-blue-hover;
+$color-state-disabled: $color-dark-grayish-blue;
+$color-in-header: $color-white;
+$color-divider: $color-dark-grayish-blue;
+
+/* font-sizes */
+$font-size-90: 1.2rem;
+$font-size-100: 1.8rem;
+$font-size-110: 4rem;
+
+/* settings */
+$header-inset: 22rem !default;
+$default-radius: .4rem !default;
+$checkbox-gradient: linear-gradient(135deg, #77B4FF, #996ADE) !default;
+$checkbox-gradient-inner: radial-gradient(closest-side, var(--color-bg), var(--color-bg) 99.9%, rgba(255, 255, 255, 0) 100%) !default;
+$list-padding: 2.2rem 2.2rem 1.4rem !default;

@@ -4,17 +4,25 @@
 .todo-item {
     display: flex;
     align-items: center;
+    padding: $list-padding;
     padding: var(--list-padding);
-    border-bottom: solid 1px var(--color-divider);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--color-divider);
+    border-bottom-color: $color-divider;
+    background-color: $color-bg;
     background-color: var(--color-bg);
     font-weight: 400;
 
     &:first-child {
+        border-top-left-radius: $default-radius;
         border-top-left-radius: var(--default-radius);
+        border-top-right-radius: $default-radius;
         border-top-right-radius: var(--default-radius);
     }
 
     &--input {
+        border-radius: $default-radius;
         border-radius: var(--default-radius);
         margin-bottom: 2.4rem;
     }
@@ -29,6 +37,7 @@
 
     &__label,
     &__input {
+        font-size: $font-size-100;
         font-size: var(--font-size-100);
         line-height: 1.4;
         padding: 0;
@@ -54,13 +63,20 @@
         border-radius: 50%;
         margin-right: 2.4rem;
         vertical-align: middle;
-        background-image: var(--checkbox-gradient-inner),
+        background-image: #{$checkbox-gradient-inner},
         url('../../images/icon-check.svg'),
-        radial-gradient(closest-side, var(--color-light-grayish-blue), var(--color-light-grayish-blue) 99.9%, rgba(255, 255, 255, 0) 100%),
-        var(--checkbox-gradient);
+        radial-gradient(closest-side, #{$color-light-grayish-blue}, #{$color-light-grayish-blue} 99.9%, rgba(255, 255, 255, 0) 100%),
+        #{$checkbox-gradient};
         background-size: calc(100% - 4px) calc(100% - 4px), 0%, 100%, 100% 100%;
         background-position: center;
         background-repeat: no-repeat;
+
+        @supports (color: var(--color)) {
+            background-image: var(--checkbox-gradient-inner),
+            url('../../images/icon-check.svg'),
+            radial-gradient(closest-side, var(--color-light-grayish-blue), var(--color-light-grayish-blue) 99.9%, rgba(255, 255, 255, 0) 100%),
+            var(--checkbox-gradient);
+        }
     }
 
     &__label:hover::before,
@@ -75,6 +91,7 @@
 
     &__checkbox:checked + &__label {
         text-decoration: line-through;
+        color: $color-state-disabled;
         color: var(--color-state-disabled);
     }
 

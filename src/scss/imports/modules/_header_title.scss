@@ -5,12 +5,14 @@
 .header-title {
     display: flex;
     align-items: center;
+    color: $color-in-header;
     color: var(--color-in-header);
     margin-bottom: 4rem;
 
     &__main {
         margin-top: 0;
         margin-bottom: 0;
+        font-size: $font-size-110;
         font-size: var(--font-size-110);
         text-transform: uppercase;
         letter-spacing: .3em;

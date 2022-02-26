@@ -4,9 +4,13 @@
 .list-footer {
     display: flex;
     justify-content: space-between;
+    padding: $list-padding;
     padding: var(--list-padding);
+    background-color: $color-bg;
     background-color: var(--color-bg);
+    border-bottom-right-radius: $default-radius;
     border-bottom-right-radius: var(--default-radius);
+    border-bottom-left-radius: $default-radius;
     border-bottom-left-radius: var(--default-radius);
 
     &__info,
