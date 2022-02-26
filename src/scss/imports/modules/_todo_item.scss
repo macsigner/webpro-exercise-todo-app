@@ -1,0 +1,96 @@
+/**
+ * Todo item.
+ */
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: var(--list-padding);
+    border-bottom: solid 1px var(--color-divider);
+    background-color: var(--color-bg);
+    font-weight: 400;
+}
+
+.todo-item:first-child {
+    border-top-left-radius: var(--default-radius);
+    border-top-right-radius: var(--default-radius);
+}
+
+.todo-item--input {
+    border-radius: var(--default-radius);
+    margin-bottom: 2.4rem;
+}
+
+.todo-item__checkbox {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.todo-item__label,
+.todo-item__input {
+    font-size: var(--font-size-100);
+    line-height: 1.4;
+    padding: 0;
+}
+
+.todo-item__label {
+    display: flex;
+    align-items: flex-start;
+    flex: 1 1 100%;
+    cursor: pointer;
+}
+
+.todo-item__label::before {
+    overflow: hidden;
+    content: '';
+    display: block;
+    flex: 0 0 auto;
+    width: 2.4rem;
+    height: 2.4rem;
+    margin-top: -.3rem;
+    border: solid 0px transparent;
+    border-image-slice: 1;
+    border-radius: 50%;
+    margin-right: 2.4rem;
+    vertical-align: middle;
+    background-image: var(--checkbox-gradient-inner),
+    url('../../images/icon-check.svg'),
+    radial-gradient(closest-side, var(--color-light-grayish-blue), var(--color-light-grayish-blue) 99.9%, rgba(255, 255, 255, 0) 100%),
+    var(--checkbox-gradient);
+    background-size: calc(100% - 4px) calc(100% - 4px), 0%, 100%, 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.todo-item__label:hover::before,
+.todo-item:focus-within .todo-item__label::before,
+.todo-item__checkbox:focus + .todo-item__label::before {
+    background-size: calc(100% - 4px) calc(100% - 4px), 50%, 0, 100% 100%;
+}
+
+.todo-item__checkbox:checked + .todo-item__label::before {
+    background-size: 0 0, 50%, 0, 100% 100%;
+}
+
+.todo-item__checkbox:checked + .todo-item__label {
+    text-decoration: line-through;
+    color: var(--color-state-disabled);
+}
+
+.todo-item__label-inner {
+    flex: 1 1 100%;
+}
+
+.todo-item__input {
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+}
+
+.todo-item__input:focus {
+    outline: none;
+}
+

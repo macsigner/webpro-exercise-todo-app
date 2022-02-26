@@ -1,0 +1,25 @@
+/**
+ * List footer.
+ */
+.list-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--list-padding);
+    background-color: var(--color-bg);
+    border-bottom-right-radius: var(--default-radius);
+    border-bottom-left-radius: var(--default-radius);
+}
+
+.list-footer__info,
+.list-footer__main,
+.list-footer__clear {
+    font-size: var(--font-size-90);
+}
+
+.list-footer__main {
+    display: flex;
+}
+
+.list-footer__main > * + * {
+    margin-left: 2.6rem;
+}

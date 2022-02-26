@@ -1,0 +1,163 @@
+/**
+ * Adjust box sizing on site.
+ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/**
+ * Adjust font size for easier px to rem conversion.
+ */
+html {
+    font-size: 62.5%;
+}
+
+/**
+ * Side wide custom properties.
+ */
+:root {
+    --base-width-max-width: 54rem;
+    --base-width-side-margin: 2rem;
+
+    /* colors */
+    --color-black: #000;
+    --color-white: #FFF;
+    /* colors light */
+    --color-very-light-gray: hsl(0, 0%, 98%);
+    --color-very-light-grayish-blue: hsl(236, 33%, 92%);
+    --color-light-grayish-blue: hsl(233, 11%, 84%);
+    --color-dark-grayish-blue: hsl(236, 9%, 61%);
+    --color-very-dark-grayish-blue: hsl(235, 19%, 35%);
+    /* colors dark */
+    --color-dark-very-dark-blue: hsl(235, 21%, 11%);
+    --color-dark-very-dark-desaturated-blue: hsl(235, 24%, 19%);
+    --color-dark-light-grayish-blue: hsl(234, 39%, 85%);
+    --color-dark-light-grayish-blue-hover: hsl(236, 33%, 92%);
+    --color-dark-dark-grayish-blue: hsl(234, 11%, 52%);
+    --color-dark-very-dark-grayish-blue: hsl(233, 14%, 35%);
+    --color-dark-very-dark-grayish-blue-alt: hsl(237, 14%, 26%);
+
+    /* colors modes */
+    --color-body-bg: var(--color-very-light-grayish-blue);
+    --color: var(--color-black);
+    --color-bg: var(--color-very-light-gray);
+    --color-state: var(--color-dark-grayish-blue);
+    --color-state-active: blue;
+    --color-state-hover: var(--color-dark-light-grayish-blue-hover);
+    --color-state-disabled: var(--color-dark-grayish-blue);
+    --color-in-header: var(--color-white);
+    --color-divider: var(--color-dark-grayish-blue);
+
+    /* font-sizes */
+    --font-size-90: 1.2rem;
+    --font-size-100: 1.8rem;
+    --font-size-110: 4rem;
+
+    /* settings */
+    --header-inset: 22rem;
+    --default-radius: .4rem;
+    --checkbox-gradient: linear-gradient(135deg, #77B4FF, #996ADE);
+    --checkbox-gradient-inner: radial-gradient(closest-side, var(--color-bg), var(--color-bg) 99.9%, rgba(255, 255, 255, 0) 100%);
+    --list-padding: 2.2rem 2.2rem 1.4rem;
+}
+
+/**
+ * Remove annoying empty space below inline-block elements.
+ */
+img,
+[style*='inline-block' i],
+svg,
+canvas,
+picture {
+    vertical-align: middle;
+}
+
+img,
+svg {
+    height: auto;
+    max-width: 100%;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+li,
+blockquote,
+figure {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    padding: 0;
+    color: inherit;
+    background-color: transparent;
+    appearance: none;
+    border: none;
+}
+
+@font-face {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/josefin-sans-v23-latin/josefin-sans-v23-latin-regular.woff2') format('woff2'),
+    url('../fonts/josefin-sans-v23-latin/josefin-sans-v23-latin-regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/josefin-sans-v23-latin/josefin-sans-v23-latin-700.woff2') format('woff2'),
+    url('../fonts/josefin-sans-v23-latin/josefin-sans-v23-latin-700.woff') format('woff');
+}
+
+body {
+    font: normal 400 1.8rem/1.6 'Josefin Sans', sans-serif;
+}
+
+/**
+ * Sticky footer.
+ */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--color-body-bg);
+}
+
+body > header,
+body > footer {
+    flex: 0 0 auto;
+}
+
+body > main {
+    flex: 1 1 auto;
+}
+
+/**
+ * Add base width to handle horizontal alignment.
+ */
+.base-width {
+    width: calc(100% - (2 * var(--base-width-side-margin)));
+    max-width: var(--base-width-max-width);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.main::before {
+    content: '';
+    display: block;
+    min-height: calc(var(--header-inset) + 2rem);
+    margin-bottom: calc(var(--header-inset) * -1);
+    padding-top: calc(300 / 1440 * 100%);
+    background-image: url('../../images/bg-desktop-light.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
