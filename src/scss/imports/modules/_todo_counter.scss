@@ -3,12 +3,12 @@
  */
 .todo-counter {
     counter-reset: todo-item;
-}
 
-.todo-counter input[type=checkbox]:not(:checked) {
-    counter-increment: todo-item;
-}
+    input[type=checkbox]:not(:checked) {
+        counter-increment: todo-item;
+    }
 
-.todo-counter__amount::after {
-    content: counter(todo-item);
+    &__amount::after {
+        content: counter(todo-item);
+    }
 }

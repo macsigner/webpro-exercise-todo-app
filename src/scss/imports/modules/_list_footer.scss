@@ -8,18 +8,18 @@
     background-color: var(--color-bg);
     border-bottom-right-radius: var(--default-radius);
     border-bottom-left-radius: var(--default-radius);
-}
 
-.list-footer__info,
-.list-footer__main,
-.list-footer__clear {
-    font-size: var(--font-size-90);
-}
+    &__info,
+    &__main,
+    &__clear {
+        font-size: var(--font-size-90);
+    }
 
-.list-footer__main {
-    display: flex;
-}
+    &__main {
+        display: flex;
+    }
 
-.list-footer__main > * + * {
-    margin-left: 2.6rem;
+    &__main > * + * {
+        margin-left: 2.6rem;
+    }
 }

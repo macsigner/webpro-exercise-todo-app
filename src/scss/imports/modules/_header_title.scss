@@ -7,18 +7,17 @@
     align-items: center;
     color: var(--color-in-header);
     margin-bottom: 4rem;
-}
 
-.header-title__main {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: var(--font-size-110);
-    text-transform: uppercase;
-    letter-spacing: .3em;
-    font-weight: 400;
-}
+    &__main {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: var(--font-size-110);
+        text-transform: uppercase;
+        letter-spacing: .3em;
+        font-weight: 400;
+    }
 
-.header-title__action {
-    margin-left: auto;
+    &__action {
+        margin-left: auto;
+    }
 }
-
