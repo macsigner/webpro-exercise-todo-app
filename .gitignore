@@ -16,3 +16,4 @@
 .prettierignore
 .idea
 .vscode
+/assets/css/*.css
