@@ -22,23 +22,6 @@ html {
     --base-width-side-margin: #{$base-width-side-margin};
 
     /* colors */
-    --color-black: #{$color-black};
-    --color-white: #{$color-white};
-    /* colors light */
-    --color-very-light-gray: #{$color-very-light-gray};
-    --color-very-light-grayish-blue: #{$color-very-light-grayish-blue};
-    --color-light-grayish-blue: #{$color-light-grayish-blue};
-    --color-dark-grayish-blue: #{$color-dark-grayish-blue};
-    --color-very-dark-grayish-blue: #{$color-very-dark-grayish-blue};
-    /* colors dark */
-    --color-dark-very-dark-blue: #{$color-dark-very-dark-blue};
-    --color-dark-very-dark-desaturated-blue: #{$color-dark-very-dark-desaturated-blue};
-    --color-dark-light-grayish-blue: #{$color-dark-light-grayish-blue};
-    --color-dark-light-grayish-blue-hover: #{$color-dark-light-grayish-blue-hover};
-    --color-dark-dark-grayish-blue: #{$color-dark-dark-grayish-blue};
-    --color-dark-very-dark-grayish-blue: #{$color-dark-very-dark-grayish-blue};
-    --color-dark-very-dark-grayish-blue-alt: #{$color-dark-very-dark-grayish-blue-alt};
-
     /* colors modes */
     --color-body-bg: #{$color-very-light-grayish-blue};
     --color: #{$color-black};
