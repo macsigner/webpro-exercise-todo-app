@@ -17,3 +17,4 @@
 .idea
 .vscode
 /assets/css/*.css
+/assets/css/*.map
