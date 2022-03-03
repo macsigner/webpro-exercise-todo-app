@@ -1,0 +1,20 @@
+/**
+ * Action button.
+ */
+.action-button {
+    font-size: var(--font-size-90);
+    color: var(--color-state);
+
+    &:hover {
+        color: var(--color-state-hover);
+    }
+
+    &--is-active,
+    &--is-active:hover {
+        color: var(--color-state-active);
+    }
+
+    &--pseudo:hover {
+        color: var(--color-state-disabled);
+    }
+}

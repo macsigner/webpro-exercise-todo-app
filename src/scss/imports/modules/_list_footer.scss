@@ -13,12 +13,6 @@
     border-bottom-left-radius: $default-radius;
     border-bottom-left-radius: var(--default-radius);
 
-    &__info,
-    &__main,
-    &__clear {
-        font-size: var(--font-size-90);
-    }
-
     &__main {
         display: flex;
     }
