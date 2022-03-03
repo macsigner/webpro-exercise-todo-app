@@ -9,4 +9,9 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    cursor: pointer;
+
+    html.dark-mode & {
+        background-image: url('../../images/icon-sun.svg');
+    }
 }

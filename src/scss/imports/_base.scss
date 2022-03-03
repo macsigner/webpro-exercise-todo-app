@@ -38,7 +38,7 @@ html {
     }
 
     @media (prefers-color-scheme: dark) {
-       @include mode-switch-variables;
+        @include mode-switch-variables;
     }
 
     /* font-sizes */
@@ -159,4 +159,8 @@ body > main {
     background-image: url('../../images/bg-desktop-light.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+
+    html.dark-mode & {
+        background-image: url('../../images/bg-desktop-dark.jpg');
+    }
 }
