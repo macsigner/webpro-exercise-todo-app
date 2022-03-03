@@ -33,6 +33,14 @@ html {
     --color-in-header: #{$color-white};
     --color-divider: #{$color-dark-grayish-blue};
 
+    &.dark-mode {
+        @include mode-switch-variables;
+    }
+
+    @media (prefers-color-scheme: dark) {
+       @include mode-switch-variables;
+    }
+
     /* font-sizes */
     --font-size-90: #{$font-size-90};
     --font-size-100: #{$font-size-100};
@@ -45,6 +53,7 @@ html {
     --checkbox-gradient-inner: #{$checkbox-gradient-inner};
     --list-padding: #{$list-padding};
 }
+
 
 /**
  * Remove annoying empty space below inline-block elements.
