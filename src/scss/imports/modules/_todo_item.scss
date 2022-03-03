@@ -25,6 +25,7 @@
         border-radius: $default-radius;
         border-radius: var(--default-radius);
         margin-bottom: 2.4rem;
+        border-bottom: none;
     }
 
     &__checkbox {
@@ -104,6 +105,7 @@
         width: 100%;
         background-color: transparent;
         border: none;
+        color: inherit;
     }
 
     &__input:focus {
