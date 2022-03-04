@@ -22,8 +22,10 @@ jobs:
                 with:
                     ref: githubPages
                     fetch-depth: 1
+            -   name: Remove previous css directory
+                run: rm -r assets/css
             -   name: Move compiled CSS to path within githubPages branch
-                run: mv /tmp/repo-name/assets/css assets/
+                run: mv -f /tmp/repo-name/assets/css assets/
             -   name: Add and Commit changes to githubPages branch
                 run: |
                     git config --local user.email 'action@github.com'
