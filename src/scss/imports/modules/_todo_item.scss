@@ -45,6 +45,7 @@
     }
 
     &__label {
+        position: relative;
         display: flex;
         align-items: flex-start;
         flex: 1 1 100%;
@@ -110,5 +111,31 @@
 
     &__input:focus {
         outline: none;
+    }
+
+    &__actions {
+        display: none;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+
+        > * + * {
+            margin-left: 1rem;
+        }
+    }
+
+    &:hover &__actions {
+        display: flex;
+    }
+
+    &__delete {
+        display: block;
+        text-indent: -999em;
+        width: 1.8rem;
+        height: 1.8rem;
+        background-image: url('/images/icon-cross.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
     }
 }
