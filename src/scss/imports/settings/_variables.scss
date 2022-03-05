@@ -44,3 +44,6 @@ $default-radius: .4rem !default;
 $checkbox-gradient: linear-gradient(135deg, #77B4FF, #996ADE) !default;
 $checkbox-gradient-inner: radial-gradient(closest-side, var(--color-bg), var(--color-bg) 99.9%, rgba(255, 255, 255, 0) 100%) !default;
 $list-padding: 2.2rem 2.2rem 1.4rem !default;
+
+/* breakpoints */
+$breakpoint-mobile-down: (60em / 1.6);

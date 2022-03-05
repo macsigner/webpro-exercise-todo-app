@@ -5,6 +5,10 @@
     display: flex;
     justify-content: space-between;
 
+    @include media-mobile-down {
+        display: block;
+    }
+
     &__upper,
     &__lower {
         flex: 0 0 100%;
@@ -32,6 +36,13 @@
         margin-left: -100%;
         background-color: transparent;
         pointer-events: none;
+
+        @include media-mobile-down {
+            margin-top: 1.6rem;
+            margin-left: 0;
+            background-color: var(--color-bg);
+            border-radius: var(--default-radius);
+        }
     }
 
     &__lower > * {
