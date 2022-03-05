@@ -30,7 +30,7 @@ const addTodoItem = function(el) {
 const nlModeToggles = document.querySelectorAll('[data-mode-switch]');
 
 nlModeToggles.forEach(el => el.addEventListener('click', e => {
-    document.documentElement.classList.toggle('dark-mode');
+    document.documentElement.classList.toggle('switch-mode');
 }));
 
 const nlDeleteTodoItem = document.querySelectorAll('[data-todo-item-delete]');

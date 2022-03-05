@@ -6,12 +6,9 @@
     width: 3rem;
     height: 3rem;
     background-image: url('../../images/icon-moon.svg');
+    background-image: var(--switch-mode-image);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
     cursor: pointer;
-
-    html.dark-mode & {
-        background-image: url('../../images/icon-sun.svg');
-    }
 }

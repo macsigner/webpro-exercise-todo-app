@@ -5,26 +5,6 @@
     --base-width-max-width: #{$base-width-max-width};
     --base-width-side-margin: #{$base-width-side-margin};
 
-    /* colors */
-    /* colors modes */
-    --color-body-bg: #{$color-very-light-grayish-blue};
-    --color: #{$color-black};
-    --color-bg: #{$color-very-light-gray};
-    --color-state: #{$color-dark-grayish-blue};
-    --color-state-active: #{$color-state-active};
-    --color-state-hover: #{$color-dark-very-dark-grayish-blue};
-    --color-state-disabled: #{$color-dark-grayish-blue};
-    --color-in-header: #{$color-white};
-    --color-divider: #{$color-dark-grayish-blue};
-
-    &.dark-mode {
-        @include mode-switch-variables;
-    }
-
-    @media (prefers-color-scheme: dark) {
-        @include mode-switch-variables;
-    }
-
     /* font-sizes */
     --font-size-90: #{$font-size-90};
     --font-size-100: #{$font-size-100};
@@ -36,6 +16,23 @@
     --checkbox-gradient: #{$checkbox-gradient};
     --checkbox-gradient-inner: #{$checkbox-gradient-inner};
     --list-padding: #{$list-padding};
+}
+
+html {
+    /* colors modes */
+    @include light-mode-custom-properties;
+
+    @media (prefers-color-scheme: dark) {
+        @include dark-mode-custom-properties;
+    }
+
+    &.switch-mode {
+        @include dark-mode-custom-properties;
+
+        @media (prefers-color-scheme: dark) {
+            @include light-mode-custom-properties;
+        }
+    }
 }
 
 body {
@@ -86,10 +83,7 @@ body > main {
     margin-bottom: calc(var(--header-inset) * -1);
     padding-top: calc(300 / 1440 * 100%);
     background-image: url('../../images/bg-desktop-light.jpg');
+    background-image: var(--pseudo-header-image);
     background-repeat: no-repeat;
     background-size: cover;
-
-    html.dark-mode & {
-        background-image: url('../../images/bg-desktop-dark.jpg');
-    }
 }

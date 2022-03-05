@@ -1,0 +1,31 @@
+/**
+ * Mode switch variables.
+ */
+
+@mixin light-mode-custom-properties {
+    --color-body-bg: #{$color-very-light-grayish-blue};
+    --color: #{$color-black};
+    --color-bg: #{$color-very-light-gray};
+    --color-state: #{$color-dark-grayish-blue};
+    --color-state-active: #{$color-state-active};
+    --color-state-hover: #{$color-dark-very-dark-grayish-blue};
+    --color-state-disabled: #{$color-dark-grayish-blue};
+    --color-in-header: #{$color-white};
+    --color-divider: #{$color-dark-grayish-blue};
+    --pseudo-header-image: url('../../images/bg-desktop-light.jpg');
+    --switch-mode-image: url('../../images/icon-moon.svg');
+}
+
+@mixin dark-mode-custom-properties {
+    --color-body-bg: #{$color-dark-very-dark-blue};
+    --color: #{$color-dark-light-grayish-blue};
+    --color-bg: #{$color-dark-very-dark-desaturated-blue};
+    --color-state: #{$color-dark-grayish-blue};
+    --color-state-active: #{$color-state-active};
+    --color-state-hover: #{$color-dark-light-grayish-blue-hover};
+    --color-state-disabled: #{$color-dark-very-dark-grayish-blue};
+    --color-in-header: #{$color-white};
+    --color-divider: #{$color-dark-grayish-blue};
+    --pseudo-header-image: url('../../images/bg-desktop-dark.jpg');
+    --switch-mode-image: url('../../images/icon-moon.svg');
+}
