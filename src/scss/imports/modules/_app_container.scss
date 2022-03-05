@@ -8,5 +8,6 @@
     @include media-mobile-down {
         // Todo: Replace app container box shadow.
         box-shadow: none;
+        filter: drop-shadow(0px 10px 10px rgb(0, 0, 0, .12));
     }
 }
