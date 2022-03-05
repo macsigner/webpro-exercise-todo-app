@@ -18,7 +18,8 @@ Web Pro Todo List
 - Aufbau nicht Mobile First, da ich _Custom Properties_ im einsatz habe.
   Tendenziell sind ja auf Mobile eher die aktuelleren Geräte im Einsatz als auf
   Desktoprechnern. Fallbacks gebe ich so nur auf Desktop an. Auf Mobile
-  überschreibe ich dann einfach die Properties.
+  überschreibe ich dann einfach die Properties. Geht zwar auch umgekehrt aber
+  geht bei mir schnell vergessen.
 - Für die Checkbox wollte ich versuchen nur mit einem Element auszukommen. Der
   erste Versuch war noch mit `border-image` und `border-radius`. Hat im Chrome
   zwar funktioniert aber nicht in Firefox und Safari. Auf hochauflösenden
