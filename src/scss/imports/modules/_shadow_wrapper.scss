@@ -2,7 +2,7 @@
  * App container.
  */
 
-.app-container {
+.shadow-wrapper {
     box-shadow: 40px 60px 40px -40px rgba(0, 0, 0, .12);
 
     @include media-mobile-down {
