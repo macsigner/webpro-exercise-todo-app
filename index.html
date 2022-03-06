@@ -23,7 +23,7 @@
             <span class="todo-item__label"><input type="text" id="add-todo" class="todo-item__input" placeholder="Create a new todo..." data-todo-item-add></span>
         </div>
         <div class="todo-counter shadow-wrapper">
-            <ul>
+            <ul data-todo-list>
                 <li class="todo-item">
                     <input class="todo-item__checkbox" type="checkbox" id="todo-item-id-1"/><label for="todo-item-id-1" class="todo-item__label">
                     Lorem ipsum dolor sit amet. <span class="todo-item__actions"> <button class="todo-item__delete" data-todo-item-delete>Delete</button></span></label>
@@ -57,9 +57,9 @@
                     <button class="list-footer__clear action-button">Clear Completed</button>
                 </div>
                 <div class="list-footer__lower">
-                    <button class="action-button action-button--is-active">All</button>
-                    <button class="action-button">Active</button>
-                    <button class="action-button">Completed</button>
+                    <button class="action-button action-button--is-active" data-todo-filter="all">All</button>
+                    <button class="action-button" data-todo-filter="active">Active</button>
+                    <button class="action-button" data-todo-filter="complete">Completed</button>
                 </div>
             </div>
         </div>

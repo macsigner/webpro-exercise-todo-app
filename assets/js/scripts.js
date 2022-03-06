@@ -8,7 +8,7 @@ const deleteItem = function(e) {
 
 let itemId = 10;
 const addTodoItem = function(el) {
-    let todoList = document.querySelector('.app-container > ul');
+    let todoList = document.querySelector('[data-todo-list]');
 
     let todoItem = document.createElement('li');
 
