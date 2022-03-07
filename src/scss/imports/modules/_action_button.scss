@@ -8,6 +8,10 @@
     line-height: 1.142;
     letter-spacing: -.01em;
 
+    &--strong {
+        font-weight: 700;
+    }
+
     &:hover {
         color: var(--color-state-hover);
     }

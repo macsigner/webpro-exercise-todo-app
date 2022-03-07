@@ -68,15 +68,13 @@
         display: block;
         position: relative;
         flex: 0 0 auto;
-        width: 2.4rem;
-        height: 2.4rem;
         border-radius: 50%;
         margin-right: 2.4rem;
         vertical-align: middle;
-        background-image: $checkbox-gradient;
         background-size: 100%;
         background-position: center;
         background-repeat: no-repeat;
+        background-color: $color-checkbox-border;
 
         &::before,
         &::after {
@@ -84,21 +82,14 @@
             display: block;
             background-repeat: no-repeat;
             background-position: center;
-            width: 100%;
-            height: 100%;
+            width: 2.4rem;
+            height: 2.4rem;
             border-radius: 50%;
             transition: transform $transition-duration-default-out;
         }
 
         &::before {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            margin: auto;
-            border: solid 1px $color-light-grayish-blue;
-            background-size: 100%;
+            border: solid 1px transparent;
             background-color: $color-bg;
             background-color: var(--color-bg);
             background-clip: content-box;
@@ -108,11 +99,21 @@
         &::after {
             position: absolute;
             top: 0;
+            right: 0;
+            bottom: 0;
             left: 0;
             background-image: url('../../images/icon-check.svg');
             background-size: 50%;
             transform: scale(0);
         }
+    }
+
+    &__label:hover &__pseudo-checkbox,
+    &:focus-within &__pseudo-checkbox,
+    &__checkbox:checked + &__label &__pseudo-checkbox,
+    &__checkbox:focus + &__label &__pseudo-checkbox {
+        background-image: $checkbox-gradient;
+        transition-duration: $transition-duration-default-in;
     }
 
     &__label:hover &__pseudo-checkbox::before,
