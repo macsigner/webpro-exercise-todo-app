@@ -3,15 +3,15 @@
  */
 
 @mixin light-mode-custom-properties {
-    --color-body-bg: #{$color-very-light-grayish-blue};
-    --color: #{$color-black};
-    --color-bg: #{$color-very-light-gray};
-    --color-state: #{$color-dark-grayish-blue};
+    --color-body-bg: #{$color-body-bg};
+    --color: #{$color};
+    --color-bg: #{$color-bg};
+    --color-state: #{$color-state};
     --color-state-active: #{$color-state-active};
-    --color-state-hover: #{$color-dark-very-dark-grayish-blue};
-    --color-state-disabled: #{$color-dark-grayish-blue};
-    --color-in-header: #{$color-white};
-    --color-divider: #{$color-dark-grayish-blue};
+    --color-state-hover: #{$color-state-hover};
+    --color-state-disabled: #{$color-state-disabled};
+    --color-in-header: #{$color-in-header};
+    --color-divider: #{$color-divider};
     --pseudo-header-image: url('../../images/bg-desktop-light.jpg');
     --switch-mode-image: url('../../images/icon-moon.svg');
 }

@@ -20,6 +20,8 @@
         border-bottom-right-radius: var(--default-radius);
         border-bottom-left-radius: $default-radius;
         border-bottom-left-radius: var(--default-radius);
+        padding-top: 1.8rem;
+        padding-bottom: 1.6rem;
     }
 
     &__upper {
@@ -50,6 +52,6 @@
     }
 
     &__lower > * + * {
-        margin-left: 2.6rem;
+        margin-left: 2rem;
     }
 }

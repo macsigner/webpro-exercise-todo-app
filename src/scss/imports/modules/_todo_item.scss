@@ -13,6 +13,7 @@
     background-color: $color-bg;
     background-color: var(--color-bg);
     font-weight: 400;
+    letter-spacing: -.014em;
 
     &:first-child {
         border-top-left-radius: $default-radius;
@@ -40,7 +41,7 @@
     &__input {
         font-size: $font-size-100;
         font-size: var(--font-size-100);
-        line-height: 1.4;
+        line-height: 1.5;
         padding: 0;
     }
 
@@ -59,7 +60,6 @@
         flex: 0 0 auto;
         width: 2.4rem;
         height: 2.4rem;
-        margin-top: -.3rem;
         border: solid 0px transparent;
         border-image-slice: 1;
         border-radius: 50%;

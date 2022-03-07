@@ -4,10 +4,10 @@
  */
 .header-title {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     color: $color-in-header;
     color: var(--color-in-header);
-    margin-bottom: 4rem;
+    margin-bottom: 3.6rem;
 
     &__main {
         margin-top: 0;
@@ -15,11 +15,13 @@
         font-size: $font-size-110;
         font-size: var(--font-size-110);
         text-transform: uppercase;
-        letter-spacing: .3em;
+        letter-spacing: .38em;
+        line-height: 1.2;
         font-weight: 400;
     }
 
     &__action {
+        margin-top: .6rem;
         margin-left: auto;
     }
 }
