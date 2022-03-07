@@ -15,6 +15,7 @@ const addTodoItem = function(el) {
     todoItem.innerHTML = `<li class="todo-item">
                           <input class="todo-item__checkbox" type="checkbox" id="todo-item-id-${itemId}">
                           <label for="todo-item-id-${itemId}" class="todo-item__label">
+                          <span class="todo-item__pseudo-checkbox"></span>
                           ${el.value}
                           <span class="todo-item__actions"> <button class="todo-item__delete" data-todo-item-delete="">Delete</button></span>
                           </label>

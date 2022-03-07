@@ -87,7 +87,7 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            transition: border $transition-duration-default-out, transform $transition-duration-default-out;
+            transition: transform $transition-duration-default-out;
         }
 
         &::before {
