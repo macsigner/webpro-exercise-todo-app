@@ -1,6 +1,8 @@
 /**
  * Settings variables.
  */
+@use "sass:math";
+
 $base-width-max-width: 54rem;
 $base-width-side-margin: 2rem;
 
@@ -51,4 +53,4 @@ $transition-duration-default-in: .3s;
 $transition-duration-default-out: .8s;
 
 /* breakpoints */
-$breakpoint-mobile-down: (60em / 1.6);
+$breakpoint-mobile-down: math.div(60em, 1.6);
