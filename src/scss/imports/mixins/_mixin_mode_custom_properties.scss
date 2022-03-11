@@ -15,6 +15,7 @@
     --color-footer: #{$color-state};
     --pseudo-header-image: url('/images/bg-desktop-light.jpg');
     --switch-mode-image: url('/images/icon-moon.svg');
+    --shadow-color: #{$color-light-grayish-blue};
 }
 
 @mixin dark-mode-custom-properties {
@@ -30,4 +31,5 @@
     --color-footer: #{$color-state};
     --pseudo-header-image: url('/images/bg-desktop-dark.jpg');
     --switch-mode-image: url('/images/icon-moon.svg');
+    --shadow-color: rgba(0, 0, 0, .2);
 }
