@@ -3,12 +3,11 @@ Web Pro Todo List
 
 # Todos
 
-- [ ] Rewrite Checkbox to use span. Flickery roundet border fix.
-- [ ] Change app-container CSS class to match later Javascript ligic
-- [ ] Rework github pages work flow. Adding orphan branch?
-- [ ] Add readme content. :)
+- [ ] Change app-container CSS class to match later Javascript logic
 - [ ] Fix Counter
-- [ ] Show edit actions on mobile
+- [ ] Check dark mode colors
+- [ ] Check mobile Design
+- [ ] Check/test custom property fallbacks.
 
 ## Infos für Kilian
 
@@ -40,3 +39,7 @@ Web Pro Todo List
   können.
 - Alignment der Checkbox absichtlich auf `flex-start`, da nach meinem Gutdünken
   optisch schöner bei mehrzeiligen Listeneinträgen.
+
+## Notes
+
+- Not working witch `node-sass`. Written for `dart-sass`.
