@@ -13,8 +13,8 @@
     --color-in-header: #{$color-in-header};
     --color-divider: #{$color-divider};
     --color-footer: #{$color-state};
-    --pseudo-header-image: url('/images/bg-desktop-light.jpg');
-    --switch-mode-image: url('/images/icon-moon.svg');
+    --pseudo-header-image: url('../../images/bg-desktop-light.jpg');
+    --switch-mode-image: url('../../images/icon-moon.svg');
     --shadow-color: #{$color-light-grayish-blue};
 }
 
@@ -29,7 +29,7 @@
     --color-in-header: #{$color-white};
     --color-divider: #{$color-dark-grayish-blue};
     --color-footer: #{$color-state};
-    --pseudo-header-image: url('/images/bg-desktop-dark.jpg');
-    --switch-mode-image: url('/images/icon-moon.svg');
+    --pseudo-header-image: url('../../images/bg-desktop-dark.jpg');
+    --switch-mode-image: url('../../images/icon-moon.svg');
     --shadow-color: rgba(0, 0, 0, .2);
 }
