@@ -3,7 +3,7 @@
  */
 
 .shadow-wrapper {
-    box-shadow: 0 30px 60px -20px $color-light-grayish-blue;
+    box-shadow: 0 30px 60px -20px var(--shadow-color);
 
     @include media-mobile-down {
         // Todo: Replace app container box shadow.
