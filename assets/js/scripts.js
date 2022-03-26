@@ -25,6 +25,10 @@ const addTodoItem = function(el) {
 
     el.value = '';
     todoItem.querySelector('[data-todo-item-delete]').addEventListener('click', deleteItem);
+    todoItem.querySelectorAll('[type="checkbox"]').forEach(el => {
+        console.log(el.checked);
+        el.checked = false
+    });
     todoList.appendChild(todoItem);
 }
 
