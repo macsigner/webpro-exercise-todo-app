@@ -4,7 +4,11 @@
     "description": "Web Pro Todo List",
     "main": "index.js",
     "scripts": {
-        "watch": "sass --watch src/scss/:assets/css/"
+        "watch": "sass --watch src/scss/:assets/css/",
+        "build": "sass --watch src/scss/:assets/css/",
+        "predeploy": "rm -rf assets/css && npm run build",
+        "deploy": "npm run predeploy && npm run ghPages",
+        "ghPages": "gh-pages -d ./"
     },
     "repository": {
         "type": "git",
@@ -18,6 +22,7 @@
     },
     "homepage": "https://github.com/macsigner/webpro-exercise-todo-app#readme",
     "devDependencies": {
+        "gh-pages": "^3.2.3",
         "normalize.css": "^8.0.1",
         "sass": "^1.49.9"
     }
