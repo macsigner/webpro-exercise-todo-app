@@ -1,3 +1,7 @@
+// Reset
+@import '../../node_modules/normalize.css/normalize';
+
+// Settings
 @import 'imports/settings/variables';
 @import 'imports/mixins/mixin_media_queries';
 @import 'imports/mixins/mixin_mode_custom_properties';
