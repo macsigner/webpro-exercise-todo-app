@@ -2,16 +2,17 @@
  * List footer.
  */
 .list-footer {
-    display: flex;
-    justify-content: space-between;
+    display: block;
 
-    @include media-mobile-down {
-        display: block;
+    @include media-mobile-up {
+        display: flex;
+        justify-content: space-between;
     }
 
     &__upper,
     &__lower {
         flex: 0 0 100%;
+        align-items: center;
         padding: $list-padding;
         padding: var(--list-padding);
         background-color: $color-bg;
@@ -35,15 +36,17 @@
     &__lower {
         display: flex;
         justify-content: center;
-        margin-left: -100%;
-        background-color: transparent;
-        pointer-events: none;
+        margin-top: 1.6rem;
+        background-color: var(--color-bg);
+        border-radius: var(--default-radius);
 
-        @include media-mobile-down {
-            margin-top: 1.6rem;
-            margin-left: 0;
-            background-color: var(--color-bg);
-            border-radius: var(--default-radius);
+        @include media-mobile-up {
+            margin-top: 0;
+            margin-left: -100%;
+            min-height: 100%;
+            border-radius: 0;
+            background-color: transparent;
+            pointer-events: none;
         }
     }
 

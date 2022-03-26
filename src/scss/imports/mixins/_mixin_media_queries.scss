@@ -7,8 +7,20 @@
     }
 }
 
+@mixin media-min-width($width) {
+    @media screen and (min-width: #{$width}) {
+        @content;
+    }
+}
+
 @mixin media-mobile-down() {
     @include media-max-width($breakpoint-mobile-down) {
+        @content;
+    }
+}
+
+@mixin media-mobile-up() {
+    @include media-min-width($breakpoint-mobile-up) {
         @content;
     }
 }
