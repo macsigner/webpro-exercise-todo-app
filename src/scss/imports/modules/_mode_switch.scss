@@ -1,0 +1,16 @@
+/**
+ * Mode switch.
+ */
+$mode-switch-size: 2.6rem !default;
+
+.mode-switch {
+    text-indent: -999em;
+    width: $mode-switch-size;
+    height: $mode-switch-size;
+    background-image: url('../../images/icon-moon.svg');
+    background-image: var(--switch-mode-image);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+}

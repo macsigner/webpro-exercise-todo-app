@@ -1,0 +1,60 @@
+/**
+ * List footer.
+ */
+.list-footer {
+    display: block;
+
+    @include media-mobile-up {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__upper,
+    &__lower {
+        flex: 0 0 100%;
+        align-items: center;
+        padding: $list-padding;
+        padding: var(--list-padding);
+        background-color: $color-bg;
+        background-color: var(--color-bg);
+        border-bottom-right-radius: $default-radius;
+        border-bottom-right-radius: var(--default-radius);
+        border-bottom-left-radius: $default-radius;
+        border-bottom-left-radius: var(--default-radius);
+        padding-top: 1.8rem;
+        padding-bottom: 1.6rem;
+    }
+
+    &__upper {
+        display: flex;
+    }
+
+    &__upper > * + * {
+        margin-left: auto;
+    }
+
+    &__lower {
+        display: flex;
+        justify-content: center;
+        margin-top: 1.6rem;
+        background-color: var(--color-bg);
+        border-radius: var(--default-radius);
+
+        @include media-mobile-up {
+            margin-top: 0;
+            margin-left: -100%;
+            min-height: 100%;
+            border-radius: 0;
+            background-color: transparent;
+            pointer-events: none;
+        }
+    }
+
+    &__lower > * {
+        pointer-events: all;
+    }
+
+    &__lower > * + * {
+        margin-left: 2rem;
+    }
+}

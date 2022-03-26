@@ -1,0 +1,14 @@
+/**
+ * Todo counter :)
+ */
+.todo-counter {
+    counter-reset: todo-item;
+
+    input[type=checkbox]:not(:checked) {
+        counter-increment: todo-item;
+    }
+
+    &__amount::after {
+        content: counter(todo-item);
+    }
+}
