@@ -68,7 +68,7 @@ body > main {
     margin-right: auto;
     margin-left: auto;
 
-    @supports (color: var(--color)) {
+    @supports (max-width: var(--base-width-max-width)) {
         width: calc(100% - (2 * var(--base-width-side-margin)));
         max-width: var(--base-width-max-width);
     }
