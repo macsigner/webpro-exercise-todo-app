@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "watch": "sass --watch src/scss/:assets/css/",
-        "build": "sass --watch src/scss/:assets/css/",
+        "build": "sass --no-source-map src/scss/:assets/css/",
         "predeploy": "rm -rf assets/css && npm run build",
         "deploy": "npm run predeploy && npm run ghPages",
         "ghPages": "gh-pages -d ./"
