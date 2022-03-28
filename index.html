@@ -30,78 +30,20 @@
         </div>
         <div class="todo-counter shadow-wrapper">
             <ul data-todo-list>
-                <li class="todo-item">
-                    <label>
-                        <input class="todo-item__checkbox" type="checkbox" checked/>
-                        <span class="todo-item__label">
-                            <span class="todo-item__pseudo-checkbox"></span>
-                            Complete online JavaScript course
-                            <span class="todo-item__actions">
-                                <button class="todo-item__delete" data-todo-item-delete>Delete</button>
+                <template id="todo-item-template">
+                    <li class="todo-item">
+                        <label>
+                            <input class="todo-item__checkbox" type="checkbox"/>
+                            <span class="todo-item__label">
+                                <span class="todo-item__pseudo-checkbox"></span>
+                                <span class="todo-item__text"></span>
+                                <span class="todo-item__actions">
+                                    <button class="todo-item__delete" data-todo-item-delete>Delete</button>
                             </span>
                         </span>
-                    </label>
-                </li>
-                <li class="todo-item">
-                    <label>
-                        <input class="todo-item__checkbox" type="checkbox"/>
-                        <span class="todo-item__label">
-                            <span class="todo-item__pseudo-checkbox"></span>
-                            Jog around the park 3x
-                            <span class="todo-item__actions">
-                                <button class="todo-item__delete" data-todo-item-delete>Delete</button>
-                            </span>
-                        </span>
-                    </label>
-                </li>
-                <li class="todo-item">
-                    <label>
-                        <input class="todo-item__checkbox" type="checkbox"/>
-                        <span class="todo-item__label">
-                            <span class="todo-item__pseudo-checkbox"></span>
-                            10 minutes meditation
-                            <span class="todo-item__actions">
-                                <button class="todo-item__delete" data-todo-item-delete>Delete</button>
-                            </span>
-                        </span>
-                    </label>
-                </li>
-                <li class="todo-item">
-                    <label>
-                        <input class="todo-item__checkbox" type="checkbox"/>
-                        <span class="todo-item__label">
-                            <span class="todo-item__pseudo-checkbox"></span>
-                            Read for 1 hour
-                            <span class="todo-item__actions">
-                                <button class="todo-item__delete" data-todo-item-delete>Delete</button>
-                            </span>
-                        </span>
-                    </label>
-                </li>
-                <li class="todo-item">
-                    <label>
-                        <input class="todo-item__checkbox" type="checkbox"/>
-                        <span class="todo-item__label">
-                            <span class="todo-item__pseudo-checkbox"></span>
-                            Pick up groceries
-                            <span class="todo-item__actions">
-                                <button class="todo-item__delete" data-todo-item-delete>Delete</button>
-                            </span>
-                        </span>
-                    </label>
-                </li>
-                <li class="todo-item">
-                    <label>
-                        <input class="todo-item__checkbox" type="checkbox"/>
-                        <span class="todo-item__label">
-                            <span class="todo-item__pseudo-checkbox"></span>
-                            Complete Todo App on Frontend Mentor
-                            <span class="todo-item__actions">
-                                <button class="todo-item__delete" data-todo-item-delete>Delete</button>
-                            </span>
-                        </span>
-                    </label>
-                </li>
+                        </label>
+                    </li>
+                </template>
             </ul>
 
             <div class="list-footer">
@@ -123,6 +65,7 @@
     </section>
 </main>
 <script src="./assets/js/modules/BaseModule.js" type="module"></script>
-<script src="./assets/js/scripts.js"></script>
+<script src="./assets/js/modules/TodoMenu.js" type="module"></script>
+<script src="./assets/js/scripts.js" type="module"></script>
 </body>
 </html>

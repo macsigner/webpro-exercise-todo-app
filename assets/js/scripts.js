@@ -1,5 +1,11 @@
 'use strict';
 
+import TodoMenu from './modules/TodoMenu.js';
+
+const nlTodoList = document.querySelectorAll('[data-todo-list]');
+
+nlTodoList.forEach(el => new TodoMenu(el));
+
 const deleteItem = function(e) {
     e.preventDefault();
 
@@ -26,7 +32,6 @@ const addTodoItem = function(el) {
     el.value = '';
     todoItem.querySelector('[data-todo-item-delete]').addEventListener('click', deleteItem);
     todoItem.querySelectorAll('[type="checkbox"]').forEach(el => {
-        console.log(el.checked);
         el.checked = false
     });
     todoList.appendChild(todoItem);
