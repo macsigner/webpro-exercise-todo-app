@@ -19,16 +19,16 @@
             <button class="header-title__action mode-switch" data-mode-switch>Switch mode</button>
         </header>
         <div data-todo-app="menu">
-            <div class="todo-item todo-item--input">
+            <form class="todo-item todo-item--input" data-todo-form>
                 <span class="todo-item__pseudo-checkbox"></span>
                 <span class="todo-item__label">
-                <input type="text"
-                       id="add-todo"
-                       class="todo-item__input"
-                       placeholder="Create a new todo..."
-                       data-todo-item-add>
-            </span>
-            </div>
+                    <input type="text"
+                           id="add-todo"
+                           class="todo-item__input"
+                           name="task"
+                           placeholder="Create a new todo...">
+                </span>
+            </form>
             <div class="todo-counter shadow-wrapper">
                 <ul data-todo-list>
                     <template id="todo-item-template">
@@ -36,12 +36,12 @@
                             <label>
                                 <input class="todo-item__checkbox" type="checkbox"/>
                                 <span class="todo-item__label">
-                                <span class="todo-item__pseudo-checkbox"></span>
-                                <span class="todo-item__text"></span>
-                                <span class="todo-item__actions">
-                                    <button class="todo-item__delete" data-todo-item-delete>Delete</button>
-                            </span>
-                        </span>
+                                    <span class="todo-item__pseudo-checkbox"></span>
+                                    <span class="todo-item__text"></span>
+                                    <span class="todo-item__actions">
+                                        <button class="todo-item__delete" data-todo-item-delete>Delete</button>
+                                    </span>
+                                </span>
                             </label>
                         </li>
                     </template>
