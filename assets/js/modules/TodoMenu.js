@@ -32,6 +32,12 @@ class TodoMenu extends BaseModule {
 
     }
 
+    _todoItemDeleteClickListener(e) {
+        e.preventDefault();
+
+        e.target.closest('.todo-item').remove();
+    }
+
     _todoFormListener(e) {
         e.preventDefault();
 
@@ -66,6 +72,9 @@ class TodoMenu extends BaseModule {
 
         todo.querySelector('.todo-item__text').innerHTML = item.task;
         todo.querySelector('input[type=checkbox]').checked = item.state === 'complete';
+
+        let todoDelete = todo.querySelector('[data-todo-item-delete]');
+        todoDelete.addEventListener('click', this._todoItemDeleteClickListener.bind(this));
 
         this.todoList.appendChild(todo);
     }
