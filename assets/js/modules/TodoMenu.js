@@ -1,10 +1,11 @@
 import BaseModule from './BaseModule.js';
 
 class TodoMenu extends BaseModule {
-    constructor(menu) {
+    constructor(el) {
         super();
 
-        this.menu = menu;
+        this.el = el;
+        this.menu = this.el.querySelector('[data-todo-list]');
         this.todoList = this.menu;
         this.itemTemplate = this._getTemplate();
         this.menu.addEventListener('itemsReady', this._buildMenu.bind(this));

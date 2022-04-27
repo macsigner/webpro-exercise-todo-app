@@ -2,7 +2,7 @@
 
 import TodoMenu from './modules/TodoMenu.js';
 
-const nlTodoList = document.querySelectorAll('[data-todo-list]');
+const nlTodoList = document.querySelectorAll('[data-todo-app=menu]');
 
 nlTodoList.forEach(el => new TodoMenu(el));
 

@@ -18,46 +18,50 @@
             <h1 class="header-title__main">Todo</h1>
             <button class="header-title__action mode-switch" data-mode-switch>Switch mode</button>
         </header>
-        <div class="todo-item todo-item--input">
-            <span class="todo-item__pseudo-checkbox"></span>
-            <span class="todo-item__label">
+        <div data-todo-app="menu">
+            <div class="todo-item todo-item--input">
+                <span class="todo-item__pseudo-checkbox"></span>
+                <span class="todo-item__label">
                 <input type="text"
                        id="add-todo"
                        class="todo-item__input"
                        placeholder="Create a new todo..."
                        data-todo-item-add>
             </span>
-        </div>
-        <div class="todo-counter shadow-wrapper">
-            <ul data-todo-list>
-                <template id="todo-item-template">
-                    <li class="todo-item">
-                        <label>
-                            <input class="todo-item__checkbox" type="checkbox"/>
-                            <span class="todo-item__label">
+            </div>
+            <div class="todo-counter shadow-wrapper">
+                <ul data-todo-list>
+                    <template id="todo-item-template">
+                        <li class="todo-item">
+                            <label>
+                                <input class="todo-item__checkbox" type="checkbox"/>
+                                <span class="todo-item__label">
                                 <span class="todo-item__pseudo-checkbox"></span>
                                 <span class="todo-item__text"></span>
                                 <span class="todo-item__actions">
                                     <button class="todo-item__delete" data-todo-item-delete>Delete</button>
                             </span>
                         </span>
-                        </label>
-                    </li>
-                </template>
-            </ul>
+                            </label>
+                        </li>
+                    </template>
+                </ul>
 
-            <div class="list-footer">
-                <div class="list-footer__upper">
+                <div class="list-footer">
+                    <div class="list-footer__upper">
                     <span class="list-footer__info action-button action-button--pseudo">
                         <span class="todo-counter__amount"><!-- Add dynamic number --></span> items left</span>
 
-                    <button class="list-footer__clear action-button">Clear Completed</button>
-                </div>
-                <div class="list-footer__lower">
-                    <button class="action-button action-button--strong action-button--is-active"
-                            data-todo-filter="all">All</button>
-                    <button class="action-button action-button--strong" data-todo-filter="active">Active</button>
-                    <button class="action-button action-button--strong" data-todo-filter="complete">Completed</button>
+                        <button class="list-footer__clear action-button">Clear Completed</button>
+                    </div>
+                    <div class="list-footer__lower">
+                        <button class="action-button action-button--strong action-button--is-active"
+                                data-todo-filter="all">All
+                        </button>
+                        <button class="action-button action-button--strong" data-todo-filter="active">Active</button>
+                        <button class="action-button action-button--strong" data-todo-filter="complete">Completed
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
