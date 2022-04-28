@@ -17,25 +17,45 @@ class TodoMenu extends BaseModule {
     }
 
     add(obj) {
+        this.el.dispatchEvent(new CustomEvent('todoAdd', {
+            detail: this,
+            item: obj,
+        }));
+
+        this.todos.push(obj);
+
+        window.localStorage.setItem('todos', JSON.stringify(this.todos));
+
         this._createItem(obj);
     }
 
-    remove(task) {
+    remove(el) {
+        let task = el.querySelector('.todo-item__text').innerHTML;
 
+        this.el.dispatchEvent(new CustomEvent('todoDelete', {
+            detail: this,
+            task: task,
+        }))
+
+        el.remove();
+
+        Object.keys(this.todos).forEach(key => {
+            if (this.todos[key].task === task) {
+                delete this.todos[key];
+            }
+        });
     }
 
-    clear(callback) {
-
-    }
-
-    filter(fn) {
+    clearCompleted() {
 
     }
 
     _todoItemDeleteClickListener(e) {
         e.preventDefault();
 
-        e.target.closest('.todo-item').remove();
+        let todoItem = e.target.closest('.todo-item');
+
+        this.remove(todoItem);
     }
 
     _todoFormListener(e) {
@@ -64,9 +84,6 @@ class TodoMenu extends BaseModule {
         return document.importNode(template.content, true);
     }
 
-    _clickListener() {
-    }
-
     _createItem(item) {
         let todo = document.importNode(this.itemTemplate, true);
 
@@ -80,9 +97,14 @@ class TodoMenu extends BaseModule {
     }
 
     _readItems() {
-        fetch('./assets/data/todos.json')
-            .then(this._parseResponse.bind(this))
-            .then(this._setTodos.bind(this));
+        let localItems = window.localStorage.getItem('todos');
+        if (localItems) {
+            this._setTodos(JSON.parse(localItems));
+        } else {
+            fetch('./assets/data/todos.json')
+                .then(this._parseResponse.bind(this))
+                .then(this._setTodos.bind(this));
+        }
     }
 
     _parseResponse(response) {
