@@ -8,7 +8,7 @@ class TodoMenu extends BaseModule {
         this.menu = this.el.querySelector('[data-todo-list]');
         this.todoList = this.menu;
         this.itemTemplate = this._getTemplate();
-        this.menu.addEventListener('itemsReady', this._buildMenu.bind(this));
+        this.menu.addEventListener('itemsReady', this.render.bind(this));
 
         this.form = this.el.querySelector('[data-todo-form]');
         this.form.addEventListener('submit', this._todoFormListener.bind(this));
@@ -35,15 +35,17 @@ class TodoMenu extends BaseModule {
         this.el.dispatchEvent(new CustomEvent('todoDelete', {
             detail: this,
             task: task,
-        }))
+        }));
 
-        el.remove();
-
-        Object.keys(this.todos).forEach(key => {
+        for (let [key, val] of this.todos.entries()) {
             if (this.todos[key].task === task) {
-                delete this.todos[key];
+                this.todos.splice(key, 1);
+
+                break;
             }
-        });
+        }
+
+        this.render();
     }
 
     clearCompleted() {
@@ -121,7 +123,9 @@ class TodoMenu extends BaseModule {
         }));
     }
 
-    _buildMenu() {
+    render() {
+        this.todoList.innerHTML = '';
+
         Object.keys(this.todos).forEach(key => {
             this._createItem(this.todos[key]);
         });
