@@ -1,6 +1,13 @@
 import BaseModule from './BaseModule.js';
 
+/**
+ * Todomenu.
+ */
 class TodoMenu extends BaseModule {
+    /**
+     * Construct the object.
+     * @param el
+     */
     constructor(el) {
         super();
 
@@ -18,6 +25,10 @@ class TodoMenu extends BaseModule {
         this._readItems();
     }
 
+    /**
+     * Add single todo item via object.
+     * @param obj
+     */
     add(obj) {
         this.el.dispatchEvent(new CustomEvent('todoAdd', {
             detail: this,
@@ -31,10 +42,17 @@ class TodoMenu extends BaseModule {
         this._createItem(obj);
     }
 
+    /**
+     * Save current State.
+     */
     save() {
         window.localStorage.setItem('todos', JSON.stringify(this.todos));
     }
 
+    /**
+     * Remove item at specified index.
+     * @param index
+     */
     remove(index) {
         this.el.dispatchEvent(new CustomEvent('todoDelete', {
             detail: this,
@@ -48,10 +66,16 @@ class TodoMenu extends BaseModule {
         this.render();
     }
 
+
     clearCompleted() {
 
     }
 
+    /**
+     * Listener on todo form.
+     * @param e
+     * @private
+     */
     _todoFormListener(e) {
         e.preventDefault();
 
@@ -71,13 +95,29 @@ class TodoMenu extends BaseModule {
         this.form.reset();
     }
 
+    /**
+     * Get template of the item
+     * @returns {string | DocumentFragment}
+     * @private
+     */
     _getTemplate() {
-        let template = this.menu.querySelector('#todo-item-template');
+        if(this.itemTemplate) {
+            return this.itemTemplate;
+        }
+
+        let template = this.menu.querySelector('#todo-item-template')
+
         template.remove();
 
         return document.importNode(template.content, true);
     }
 
+    /**
+     * Create single entry from object.
+     * @param item
+     * @param index
+     * @private
+     */
     _createItem(item, index = this.todos.length) {
         let todo = document.importNode(this.itemTemplate, true);
 
@@ -89,12 +129,21 @@ class TodoMenu extends BaseModule {
 
     }
 
+    /**
+     * Delegate events occurring on current list.
+     * @param e
+     * @private
+     */
     _listEventDelegation(e) {
         if (e.target.matches('[data-todo-item-delete]')) {
             this.remove(parseInt(e.target.closest('[data-todo-index]').dataset.todoIndex));
         }
     }
 
+    /**
+     * Read items. When empty some default items will be returned.
+     * @private
+     */
     _readItems() {
         let localItems = window.localStorage.getItem('todos');
 
@@ -104,17 +153,20 @@ class TodoMenu extends BaseModule {
             this._setTodos(JSON.parse(localItems));
         } else {
             fetch('./assets/data/todos.json')
-                .then(this._parseResponse.bind(this))
+                .then(response => response.json())
                 .then(this._setTodos.bind(this));
         }
     }
 
-    _parseResponse(response) {
-        return response.json();
-    }
-
+    /**
+     * Set Todos
+     * @param data
+     * @private
+     */
     _setTodos(data) {
         this.todos = data;
+
+        this.save();
 
         this.menu.dispatchEvent(new CustomEvent('itemsReady', {
             detail: {
@@ -123,6 +175,9 @@ class TodoMenu extends BaseModule {
         }));
     }
 
+    /**
+     * Render current items in this.todos.
+     */
     render() {
         this.todoList.innerHTML = '';
 
