@@ -10,6 +10,8 @@ class TodoMenu extends BaseModule {
         this.itemTemplate = this._getTemplate();
         this.menu.addEventListener('itemsReady', this.render.bind(this));
 
+        this.todoList.addEventListener('click', this._listEventDelegation.bind(this));
+
         this.form = this.el.querySelector('[data-todo-form]');
         this.form.addEventListener('submit', this._todoFormListener.bind(this));
 
@@ -24,40 +26,30 @@ class TodoMenu extends BaseModule {
 
         this.todos.push(obj);
 
-        window.localStorage.setItem('todos', JSON.stringify(this.todos));
+        this.save();
 
         this._createItem(obj);
     }
 
-    remove(el) {
-        let task = el.querySelector('.todo-item__text').innerHTML;
+    save() {
+        window.localStorage.setItem('todos', JSON.stringify(this.todos));
+    }
 
+    remove(index) {
         this.el.dispatchEvent(new CustomEvent('todoDelete', {
             detail: this,
-            task: task,
+            task: this.todos[index],
         }));
 
-        for (let [key, val] of this.todos.entries()) {
-            if (this.todos[key].task === task) {
-                this.todos.splice(key, 1);
+        this.todos.splice(index, 1);
 
-                break;
-            }
-        }
+        this.save();
 
         this.render();
     }
 
     clearCompleted() {
 
-    }
-
-    _todoItemDeleteClickListener(e) {
-        e.preventDefault();
-
-        let todoItem = e.target.closest('.todo-item');
-
-        this.remove(todoItem);
     }
 
     _todoFormListener(e) {
@@ -86,21 +78,29 @@ class TodoMenu extends BaseModule {
         return document.importNode(template.content, true);
     }
 
-    _createItem(item) {
+    _createItem(item, index = this.todos.length) {
         let todo = document.importNode(this.itemTemplate, true);
 
         todo.querySelector('.todo-item__text').innerHTML = item.task;
         todo.querySelector('input[type=checkbox]').checked = item.state === 'complete';
-
-        let todoDelete = todo.querySelector('[data-todo-item-delete]');
-        todoDelete.addEventListener('click', this._todoItemDeleteClickListener.bind(this));
+        todo.firstElementChild.dataset.todoIndex = index;
 
         this.todoList.appendChild(todo);
+
+    }
+
+    _listEventDelegation(e) {
+        if (e.target.matches('[data-todo-item-delete]')) {
+            this.remove(parseInt(e.target.closest('[data-todo-index]').dataset.todoIndex));
+        }
     }
 
     _readItems() {
         let localItems = window.localStorage.getItem('todos');
-        if (localItems) {
+
+        // Check for larger than 2 => empty array in json string
+        console.log()
+        if (localItems !== null && localItems.length > 2) {
             this._setTodos(JSON.parse(localItems));
         } else {
             fetch('./assets/data/todos.json')
@@ -127,7 +127,7 @@ class TodoMenu extends BaseModule {
         this.todoList.innerHTML = '';
 
         Object.keys(this.todos).forEach(key => {
-            this._createItem(this.todos[key]);
+            this._createItem(this.todos[key], key);
         });
     }
 }
