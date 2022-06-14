@@ -97,9 +97,11 @@ class TodoMenu extends BaseModule {
             formData.delete(entry[0]);
         }
 
-        this.add(todo);
+        if (todo.task.trim().length) {
+            this.add(todo);
 
-        this.form.reset();
+            this.form.reset();
+        }
     }
 
     /**
