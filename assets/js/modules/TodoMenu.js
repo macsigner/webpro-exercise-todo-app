@@ -1,5 +1,5 @@
 import BaseModule from './BaseModule.js';
-
+import * as Tools from './tools.js';
 /**
  * Todomenu.
  */
@@ -17,7 +17,14 @@ class TodoMenu extends BaseModule {
         this.itemTemplate = this._getTemplate();
         this.menu.addEventListener('itemsReady', this.render.bind(this));
 
-        this.todoList.addEventListener('click', this._listEventDelegation.bind(this));
+        this.todoList.addEventListener('click', Tools.delegate('[data-todo-item-delete]', (e) => {
+            this.remove(this._getParentIndex(e.target));
+        }));
+        this.todoList.addEventListener('click', Tools.delegate('[value=done]', (e) => {
+            this.todos[this._getParentIndex(e.target)].checked = e.target.checked;
+            this.save();
+            this.render();
+        }));
 
         this.form = this.el.querySelector('[data-todo-form]');
         this.form.addEventListener('submit', this._todoFormListener.bind(this));
@@ -107,8 +114,6 @@ class TodoMenu extends BaseModule {
 
         let template = this.menu.querySelector('#todo-item-template')
 
-        template.remove();
-
         return document.importNode(template.content, true);
     }
 
@@ -128,21 +133,6 @@ class TodoMenu extends BaseModule {
         todo.firstElementChild.dataset.todoIndex = index;
 
         this.todoList.appendChild(todo);
-    }
-
-    /**
-     * Delegate events occurring on current list.
-     * @param e
-     * @private
-     */
-    _listEventDelegation(e) {
-        if (e.target.matches('[data-todo-item-delete]')) {
-            this.remove(this._getParentIndex(e.target));
-        } else if (e.target.matches('[value="done"]')) {
-            this.todos[this._getParentIndex(e.target)].checked = e.target.checked;
-            this.save();
-            this.render();
-        }
     }
 
     /**
