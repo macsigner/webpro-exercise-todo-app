@@ -123,10 +123,11 @@ class TodoMenu extends BaseModule {
 
         todo.querySelector('.todo-item__text').innerHTML = item.task;
         todo.querySelector('input[type=checkbox]').checked = item.checked;
+        item.checked ? todo.firstElementChild.classList.add('checked') : '';
+
         todo.firstElementChild.dataset.todoIndex = index;
 
         this.todoList.appendChild(todo);
-
     }
 
     /**
@@ -138,8 +139,9 @@ class TodoMenu extends BaseModule {
         if (e.target.matches('[data-todo-item-delete]')) {
             this.remove(this._getParentIndex(e.target));
         } else if (e.target.matches('[value="done"]')) {
-            this.todos[this._getParentIndex(e.target)].checked = e.target.checked;;
+            this.todos[this._getParentIndex(e.target)].checked = e.target.checked;
             this.save();
+            this.render();
         }
     }
 
