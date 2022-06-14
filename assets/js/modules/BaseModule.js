@@ -13,6 +13,7 @@ class BaseModule {
             settings = Object.assign({}, objSettings);
         }
 
+        // Todo: rewrite as for loop
         Object.keys(options).forEach((strKey) => {
             if (typeof options[strKey] === 'object'
                 && !(options[strKey] instanceof Node)
@@ -25,15 +26,6 @@ class BaseModule {
         });
 
         return settings;
-    }
-
-    /**
-     * Get anchor id from url string.
-     * @param strUrl
-     * @returns {*}
-     */
-    getAnchorIdFromUrl(strUrl) {
-        return strUrl.split('#')[1];
     }
 
     /**

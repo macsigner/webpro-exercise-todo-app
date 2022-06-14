@@ -101,7 +101,7 @@ class TodoMenu extends BaseModule {
      * @private
      */
     _getTemplate() {
-        if(this.itemTemplate) {
+        if (this.itemTemplate) {
             return this.itemTemplate;
         }
 
@@ -137,6 +137,8 @@ class TodoMenu extends BaseModule {
     _listEventDelegation(e) {
         if (e.target.matches('[data-todo-item-delete]')) {
             this.remove(parseInt(e.target.closest('[data-todo-index]').dataset.todoIndex));
+        } else if (e.target.matches('[value="done"]')) {
+            console.log(e.target);
         }
     }
 
@@ -148,7 +150,6 @@ class TodoMenu extends BaseModule {
         let localItems = window.localStorage.getItem('todos');
 
         // Check for larger than 2 => empty array in json string
-        console.log()
         if (localItems !== null && localItems.length > 2) {
             this._setTodos(JSON.parse(localItems));
         } else {
