@@ -80,7 +80,7 @@ class TodoMenu extends BaseModule {
         e.preventDefault();
 
         let todo = {
-            state: 'active',
+            checked: false,
         }
 
         let formData = new FormData(this.form);
@@ -122,7 +122,7 @@ class TodoMenu extends BaseModule {
         let todo = document.importNode(this.itemTemplate, true);
 
         todo.querySelector('.todo-item__text').innerHTML = item.task;
-        todo.querySelector('input[type=checkbox]').checked = item.state === 'complete';
+        todo.querySelector('input[type=checkbox]').checked = item.checked;
         todo.firstElementChild.dataset.todoIndex = index;
 
         this.todoList.appendChild(todo);
@@ -136,10 +136,21 @@ class TodoMenu extends BaseModule {
      */
     _listEventDelegation(e) {
         if (e.target.matches('[data-todo-item-delete]')) {
-            this.remove(parseInt(e.target.closest('[data-todo-index]').dataset.todoIndex));
+            this.remove(this._getParentIndex(e.target));
         } else if (e.target.matches('[value="done"]')) {
-            console.log(e.target);
+            this.todos[this._getParentIndex(e.target)].checked = e.target.checked;;
+            this.save();
         }
+    }
+
+    /**
+     * Get parent index of item.
+     * @param el
+     * @returns {number}
+     * @private
+     */
+    _getParentIndex(el) {
+        return parseInt(el.closest('[data-todo-index]').dataset.todoIndex);
     }
 
     /**

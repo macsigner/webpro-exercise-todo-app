@@ -1,26 +1,26 @@
 [
     {
         "task": "Complete online JavaScript course",
-        "state": "complete"
+        "checked": true
     },
     {
         "task": "Jog around the park 3x",
-        "state": "active"
+        "checked": false
     },
     {
         "task": "10 minutes meditation",
-        "state": "active"
+        "checked": false
     },
     {
         "task": "Read for 1 hour",
-        "state": "active"
+        "checked": false
     },
     {
         "task": "Pick up groceries",
-        "state": "active"
+        "checked": false
     },
     {
         "task": "Complete Todo App on Frontend Mentor",
-        "state": "active"
+        "checked": false
     }
 ]
