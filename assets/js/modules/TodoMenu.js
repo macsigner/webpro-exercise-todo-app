@@ -18,7 +18,7 @@ class TodoMenu extends BaseModule {
         this.menu.addEventListener('itemsReady', this.render.bind(this));
         this.filter = {};
 
-        this.todoList.addEventListener('click', Tools.delegate('[data-todo-item-delete]', (e) => {
+        this.todoList.addEventListener('click', Tools.delegate('[data-todo-item-action=remove]', (e) => {
             this.remove(this._getParentIndex(e.target));
         }));
 
