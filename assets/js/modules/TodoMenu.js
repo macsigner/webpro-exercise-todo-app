@@ -36,6 +36,11 @@ class TodoMenu extends BaseModule {
         this.el.addEventListener('click', Tools.delegate('[data-todo-filter]', (e) => {
             let filterButton = e.target.closest('[data-todo-filter]');
 
+            this.el.querySelectorAll('[data-todo-filter]')
+                .forEach(el => el.classList.remove('active'));
+
+            filterButton.classList.add('active');
+
             switch (filterButton.dataset.todoFilter) {
                 case '*':
                     delete this.filter.checked;
