@@ -16,13 +16,32 @@ class TodoMenu extends BaseModule {
         this.todoList = this.menu;
         this.itemTemplate = this._getTemplate();
         this.menu.addEventListener('itemsReady', this.render.bind(this));
+        this.filter = {};
 
         this.todoList.addEventListener('click', Tools.delegate('[data-todo-item-delete]', (e) => {
             this.remove(this._getParentIndex(e.target));
         }));
+
         this.todoList.addEventListener('click', Tools.delegate('[value=checked]', (e) => {
             this.todos[this._getParentIndex(e.target)].checked = e.target.checked;
             this.save();
+            this.render();
+        }));
+
+        this.el.addEventListener('click', Tools.delegate('[data-todo-filter]', (e) => {
+            let filterButton = e.target.closest('[data-todo-filter]');
+
+            switch (filterButton.dataset.todoFilter) {
+                case '*':
+                    delete this.filter.checked;
+                    break;
+                case 'complete':
+                    this.filter.checked = true;
+                    break;
+                case 'active':
+                    this.filter.checked = false;
+            }
+
             this.render();
         }));
 
@@ -126,6 +145,10 @@ class TodoMenu extends BaseModule {
      * @private
      */
     _createItem(item, index = this.todos.length - 1) {
+        if(!this._matchesFilter(item)) {
+            return;
+        }
+
         let todo = document.importNode(this.itemTemplate, true);
 
         todo.querySelectorAll('[data-todo-item-content]').forEach((el) => {
@@ -144,6 +167,20 @@ class TodoMenu extends BaseModule {
         todo.firstElementChild.dataset.todoIndex = index;
 
         this.todoList.appendChild(todo);
+    }
+
+    _matchesFilter(item) {
+        if(Object.keys(this.filter).length === 0) {
+            return true;
+        }
+
+        let matches = true;
+
+        for (let key in this.filter) {
+            matches = matches && this.filter[key] === item[key];
+        }
+
+        return matches;
     }
 
     /**
