@@ -56,11 +56,6 @@ class TodoMenu extends BaseModule {
      * @param obj
      */
     add(obj) {
-        this.el.dispatchEvent(new CustomEvent('todoAdd', {
-            detail: this,
-            item: obj,
-        }));
-
         this.todos.push(obj);
 
         this.save();
@@ -80,11 +75,6 @@ class TodoMenu extends BaseModule {
      * @param index
      */
     remove(index) {
-        this.el.dispatchEvent(new CustomEvent('todoDelete', {
-            detail: this,
-            task: this.todos[index],
-        }));
-
         this.todos.splice(index, 1);
 
         this.save();
