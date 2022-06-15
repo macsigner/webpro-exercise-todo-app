@@ -20,7 +20,7 @@ class TodoMenu extends BaseModule {
         this.todoList.addEventListener('click', Tools.delegate('[data-todo-item-delete]', (e) => {
             this.remove(this._getParentIndex(e.target));
         }));
-        this.todoList.addEventListener('click', Tools.delegate('[value=done]', (e) => {
+        this.todoList.addEventListener('click', Tools.delegate('[value=checked]', (e) => {
             this.todos[this._getParentIndex(e.target)].checked = e.target.checked;
             this.save();
             this.render();
@@ -114,7 +114,7 @@ class TodoMenu extends BaseModule {
             return this.itemTemplate;
         }
 
-        let template = this.menu.querySelector('#todo-item-template')
+        let template = this.menu.querySelector('[data-todo-item-template]');
 
         return document.importNode(template.content, true);
     }
@@ -128,8 +128,17 @@ class TodoMenu extends BaseModule {
     _createItem(item, index = this.todos.length) {
         let todo = document.importNode(this.itemTemplate, true);
 
-        todo.querySelector('.todo-item__text').innerHTML = item.task;
-        todo.querySelector('input[type=checkbox]').checked = item.checked;
+        todo.querySelectorAll('[data-todo-item-content]').forEach((el) => {
+            let key = el.dataset.todoItemContent;
+
+            if (item[key]) {
+                el.innerHTML = item[key];
+            } else {
+                el.remove();
+            }
+        });
+
+        todo.querySelector('input[value=checked]').checked = item.checked;
         item.checked ? todo.firstElementChild.classList.add('checked') : '';
 
         todo.firstElementChild.dataset.todoIndex = index;

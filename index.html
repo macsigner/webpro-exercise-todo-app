@@ -31,13 +31,13 @@
             </form>
             <div class="todo-counter shadow-wrapper">
                 <ul data-todo-list>
-                    <template id="todo-item-template">
+                    <template data-todo-item-template>
                         <li class="todo-item" data-todo-item>
                             <label>
-                                <input class="todo-item__checkbox" value="done" type="checkbox"/>
+                                <input class="todo-item__checkbox" value="checked" type="checkbox"/>
                                 <span class="todo-item__label">
                                     <span class="todo-item__pseudo-checkbox"></span>
-                                    <span class="todo-item__text"></span>
+                                    <span class="todo-item__text" data-todo-item-content="task"></span>
                                     <span class="todo-item__actions">
                                         <button class="todo-item__delete" data-todo-item-delete>Delete</button>
                                     </span>
