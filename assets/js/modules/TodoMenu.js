@@ -28,6 +28,11 @@ class TodoMenu extends BaseModule {
             this.render();
         }));
 
+        this.el.addEventListener(
+            'click',
+            Tools.delegate('[data-todo-action=clearCompleted]', this.clearCompleted.bind(this)),
+        );
+
         this.el.addEventListener('click', Tools.delegate('[data-todo-filter]', (e) => {
             let filterButton = e.target.closest('[data-todo-filter]');
 
@@ -82,9 +87,19 @@ class TodoMenu extends BaseModule {
         this.render();
     }
 
-
+    /**
+     * Remove completed items from todo list.
+     */
     clearCompleted() {
+        this.todos = this.todos.filter(item => {
+            if (!item.checked) {
+                return item;
+            }
+        });
 
+        this.save();
+
+        this.render();
     }
 
     /**
