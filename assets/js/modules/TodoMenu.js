@@ -125,7 +125,7 @@ class TodoMenu extends BaseModule {
      * @param index
      * @private
      */
-    _createItem(item, index = this.todos.length) {
+    _createItem(item, index = this.todos.length - 1) {
         let todo = document.importNode(this.itemTemplate, true);
 
         todo.querySelectorAll('[data-todo-item-content]').forEach((el) => {
@@ -196,9 +196,9 @@ class TodoMenu extends BaseModule {
     render() {
         this.todoList.innerHTML = '';
 
-        Object.keys(this.todos).forEach(key => {
+        for (let key in this.todos) {
             this._createItem(this.todos[key], key);
-        });
+        }
     }
 }
 
