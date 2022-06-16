@@ -15,6 +15,7 @@ class BaseModule {
 
         // Todo: rewrite as for loop
         Object.keys(options).forEach((strKey) => {
+            // Todo: Check for isArray?
             if (typeof options[strKey] === 'object'
                 && !(options[strKey] instanceof Node)
                 && !(options[strKey] instanceof Function)

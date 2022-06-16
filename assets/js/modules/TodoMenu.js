@@ -33,9 +33,11 @@ class TodoMenu extends BaseModule {
             Tools.delegate('[data-todo-action=clearCompleted]', this.clearCompleted.bind(this)),
         );
 
+        // Todo: Exchange anonymous function with named one.
         this.el.addEventListener('click', Tools.delegate('[data-todo-filter]', (e) => {
             let filterButton = e.target.closest('[data-todo-filter]');
 
+            // Todo: Check matching filters. Eg. what filters are set?
             this.el.querySelectorAll('[data-todo-filter]')
                 .forEach(el => el.classList.remove('active'));
 
@@ -217,6 +219,7 @@ class TodoMenu extends BaseModule {
             fetch('./assets/data/todos.json')
                 .then(response => response.json())
                 .then(this._setTodos.bind(this));
+            // Todo: Handle errors
         }
     }
 
