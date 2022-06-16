@@ -3,13 +3,11 @@ Web Pro Todo List
 
 Preview via [github page](https://macsigner.github.io/webpro-exercise-todo-app/)
 
-[Have a look at it](https://macsigner.github.io/webpro-exercise-todo-app/)
-
 ## Notes
 
-- Not working with _node-sass_. Written for _dart-sass_.
+- Not working with [_node-sass_](https://www.npmjs.com/package/node-sass). Written for [_dart-sass_](https://www.npmjs.com/package/sass).
 
-## Nodescripts
+## Node scripts
 
 | Script      | Task                                                              |
 |-------------|-------------------------------------------------------------------|
@@ -17,4 +15,4 @@ Preview via [github page](https://macsigner.github.io/webpro-exercise-todo-app/)
 | `build`     | Build SCSS-Files without generating source map                    |
 | `predeploy` | Remove CSS Folder and build files                                 |
 | `deploy`    | Run `predeploy` and run `ghPages`                                 |
-| `ghPages`   | Deploy current assets and files to githubpagees                   |
+| `ghPages`   | Deploy current assets and files to githubp agees                  |
