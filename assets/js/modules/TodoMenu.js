@@ -1,5 +1,5 @@
 import BaseModule from './BaseModule.js';
-import * as Tools from './tools.js';
+import * as Tools from '../tools.js';
 /**
  * Todomenu.
  */
