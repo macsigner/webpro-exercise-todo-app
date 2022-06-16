@@ -16,8 +16,7 @@
         color: var(--color-state-hover);
     }
 
-    &--is-active,
-    &--is-active:hover {
+    &.active {
         color: var(--color-state-active);
     }
 

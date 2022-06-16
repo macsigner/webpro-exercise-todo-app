@@ -853,7 +853,7 @@ body > main {
 .todo-counter {
   counter-reset: todo-item;
 }
-.todo-counter input[type=checkbox]:not(:checked) {
+.todo-counter [data-todo-item]:not(.checked) {
   counter-increment: todo-item;
 }
 .todo-counter__amount::after {
@@ -876,7 +876,7 @@ body > main {
 .action-button:hover {
   color: var(--color-state-hover);
 }
-.action-button--is-active, .action-button--is-active:hover {
+.action-button.active {
   color: var(--color-state-active);
 }
 .action-button--pseudo:hover {

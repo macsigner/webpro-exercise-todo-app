@@ -4,7 +4,7 @@
 .todo-counter {
     counter-reset: todo-item;
 
-    input[type=checkbox]:not(:checked) {
+    [data-todo-item]:not(.checked) {
         counter-increment: todo-item;
     }
 

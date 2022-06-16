@@ -1,5 +1,5 @@
 import BaseModule from './BaseModule.js';
-
+import * as Tools from '../tools.js';
 /**
  * Todomenu.
  */
@@ -16,8 +16,46 @@ class TodoMenu extends BaseModule {
         this.todoList = this.menu;
         this.itemTemplate = this._getTemplate();
         this.menu.addEventListener('itemsReady', this.render.bind(this));
+        this.filter = {};
 
-        this.todoList.addEventListener('click', this._listEventDelegation.bind(this));
+        this.todoList.addEventListener('click', Tools.delegate('[data-todo-item-action=remove]', (e) => {
+            this.remove(this._getParentIndex(e.target));
+        }));
+
+        this.todoList.addEventListener('click', Tools.delegate('[value=checked]', (e) => {
+            this.todos[this._getParentIndex(e.target)].checked = e.target.checked;
+            this.save();
+            this.render();
+        }));
+
+        this.el.addEventListener(
+            'click',
+            Tools.delegate('[data-todo-action=clearCompleted]', this.clearCompleted.bind(this)),
+        );
+
+        // Todo: Exchange anonymous function with named one.
+        this.el.addEventListener('click', Tools.delegate('[data-todo-filter]', (e) => {
+            let filterButton = e.target.closest('[data-todo-filter]');
+
+            // Todo: Check matching filters. Eg. what filters are set?
+            this.el.querySelectorAll('[data-todo-filter]')
+                .forEach(el => el.classList.remove('active'));
+
+            filterButton.classList.add('active');
+
+            switch (filterButton.dataset.todoFilter) {
+                case '*':
+                    delete this.filter.checked;
+                    break;
+                case 'complete':
+                    this.filter.checked = true;
+                    break;
+                case 'active':
+                    this.filter.checked = false;
+            }
+
+            this.render();
+        }));
 
         this.form = this.el.querySelector('[data-todo-form]');
         this.form.addEventListener('submit', this._todoFormListener.bind(this));
@@ -30,11 +68,6 @@ class TodoMenu extends BaseModule {
      * @param obj
      */
     add(obj) {
-        this.el.dispatchEvent(new CustomEvent('todoAdd', {
-            detail: this,
-            item: obj,
-        }));
-
         this.todos.push(obj);
 
         this.save();
@@ -54,11 +87,6 @@ class TodoMenu extends BaseModule {
      * @param index
      */
     remove(index) {
-        this.el.dispatchEvent(new CustomEvent('todoDelete', {
-            detail: this,
-            task: this.todos[index],
-        }));
-
         this.todos.splice(index, 1);
 
         this.save();
@@ -66,9 +94,19 @@ class TodoMenu extends BaseModule {
         this.render();
     }
 
-
+    /**
+     * Remove completed items from todo list.
+     */
     clearCompleted() {
+        this.todos = this.todos.filter(item => {
+            if (!item.checked) {
+                return item;
+            }
+        });
 
+        this.save();
+
+        this.render();
     }
 
     /**
@@ -80,7 +118,7 @@ class TodoMenu extends BaseModule {
         e.preventDefault();
 
         let todo = {
-            state: 'active',
+            checked: false,
         }
 
         let formData = new FormData(this.form);
@@ -90,9 +128,11 @@ class TodoMenu extends BaseModule {
             formData.delete(entry[0]);
         }
 
-        this.add(todo);
+        if (todo.task.trim().length) {
+            this.add(todo);
 
-        this.form.reset();
+            this.form.reset();
+        }
     }
 
     /**
@@ -101,13 +141,11 @@ class TodoMenu extends BaseModule {
      * @private
      */
     _getTemplate() {
-        if(this.itemTemplate) {
+        if (this.itemTemplate) {
             return this.itemTemplate;
         }
 
-        let template = this.menu.querySelector('#todo-item-template')
-
-        template.remove();
+        let template = this.menu.querySelector('[data-todo-item-template]');
 
         return document.importNode(template.content, true);
     }
@@ -118,26 +156,53 @@ class TodoMenu extends BaseModule {
      * @param index
      * @private
      */
-    _createItem(item, index = this.todos.length) {
+    _createItem(item, index = this.todos.length - 1) {
+        if(!this._matchesFilter(item)) {
+            return;
+        }
+
         let todo = document.importNode(this.itemTemplate, true);
 
-        todo.querySelector('.todo-item__text').innerHTML = item.task;
-        todo.querySelector('input[type=checkbox]').checked = item.state === 'complete';
+        todo.querySelectorAll('[data-todo-item-content]').forEach((el) => {
+            let key = el.dataset.todoItemContent;
+
+            if (item[key]) {
+                el.innerHTML = item[key];
+            } else {
+                el.remove();
+            }
+        });
+
+        todo.querySelector('input[value=checked]').checked = item.checked;
+        item.checked ? todo.firstElementChild.classList.add('checked') : '';
+
         todo.firstElementChild.dataset.todoIndex = index;
 
         this.todoList.appendChild(todo);
+    }
 
+    _matchesFilter(item) {
+        if(Object.keys(this.filter).length === 0) {
+            return true;
+        }
+
+        let matches = true;
+
+        for (let key in this.filter) {
+            matches = matches && this.filter[key] === item[key];
+        }
+
+        return matches;
     }
 
     /**
-     * Delegate events occurring on current list.
-     * @param e
+     * Get parent index of item.
+     * @param el
+     * @returns {number}
      * @private
      */
-    _listEventDelegation(e) {
-        if (e.target.matches('[data-todo-item-delete]')) {
-            this.remove(parseInt(e.target.closest('[data-todo-index]').dataset.todoIndex));
-        }
+    _getParentIndex(el) {
+        return parseInt(el.closest('[data-todo-index]').dataset.todoIndex);
     }
 
     /**
@@ -148,13 +213,13 @@ class TodoMenu extends BaseModule {
         let localItems = window.localStorage.getItem('todos');
 
         // Check for larger than 2 => empty array in json string
-        console.log()
         if (localItems !== null && localItems.length > 2) {
             this._setTodos(JSON.parse(localItems));
         } else {
             fetch('./assets/data/todos.json')
                 .then(response => response.json())
                 .then(this._setTodos.bind(this));
+            // Todo: Handle errors
         }
     }
 
@@ -181,9 +246,9 @@ class TodoMenu extends BaseModule {
     render() {
         this.todoList.innerHTML = '';
 
-        Object.keys(this.todos).forEach(key => {
+        for (let key in this.todos) {
             this._createItem(this.todos[key], key);
-        });
+        }
     }
 }
 

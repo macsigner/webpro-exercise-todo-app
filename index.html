@@ -31,15 +31,15 @@
             </form>
             <div class="todo-counter shadow-wrapper">
                 <ul data-todo-list>
-                    <template id="todo-item-template">
-                        <li class="todo-item">
+                    <template data-todo-item-template>
+                        <li class="todo-item" data-todo-item>
                             <label>
-                                <input class="todo-item__checkbox" type="checkbox"/>
+                                <input class="todo-item__checkbox" value="checked" type="checkbox"/>
                                 <span class="todo-item__label">
                                     <span class="todo-item__pseudo-checkbox"></span>
-                                    <span class="todo-item__text"></span>
+                                    <span class="todo-item__text" data-todo-item-content="task"></span>
                                     <span class="todo-item__actions">
-                                        <button class="todo-item__delete" data-todo-item-delete>Delete</button>
+                                        <button class="todo-item__delete" data-todo-item-action="remove">Delete</button>
                                     </span>
                                 </span>
                             </label>
@@ -52,11 +52,11 @@
                     <span class="list-footer__info action-button action-button--pseudo">
                         <span class="todo-counter__amount"><!-- Add dynamic number --></span> items left</span>
 
-                        <button class="list-footer__clear action-button">Clear Completed</button>
+                        <button class="list-footer__clear action-button" data-todo-action="clearCompleted">Clear Completed</button>
                     </div>
                     <div class="list-footer__lower">
-                        <button class="action-button action-button--strong action-button--is-active"
-                                data-todo-filter="all">All
+                        <button class="action-button action-button--strong active"
+                                data-todo-filter="*">All
                         </button>
                         <button class="action-button action-button--strong" data-todo-filter="active">Active</button>
                         <button class="action-button action-button--strong" data-todo-filter="complete">Completed
