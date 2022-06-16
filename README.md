@@ -3,6 +3,8 @@ Web Pro Todo List
 
 Preview via [github page](https://macsigner.github.io/webpro-exercise-todo-app/)
 
+[Have a look at it](https://macsigner.github.io/webpro-exercise-todo-app/)
+
 ## Notes
 
 - Not working with _node-sass_. Written for _dart-sass_.
