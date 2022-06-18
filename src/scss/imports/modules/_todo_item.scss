@@ -2,6 +2,14 @@
  * Todo item.
  */
 .todo-item {
+    &.dragover {
+        background-color: var(--color-body-bg);
+    }
+
+    &.dragged {
+        opacity: .5;
+    }
+
     &,
     > label {
         display: flex;

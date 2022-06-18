@@ -22,6 +22,60 @@ class TodoMenu extends BaseModule {
             this.remove(this._getParentIndex(e.target));
         }));
 
+        this.todoList.addEventListener('mouseover', Tools.delegate('[data-todo-item-action=drag]', (e) => {
+            e.target.closest('[data-todo-item]').draggable = true;
+        }));
+
+        this.todoList.addEventListener('mouseout', Tools.delegate('[data-todo-item-action=drag]', (e) => {
+            e.target.closest('[data-todo-item]').draggable = false;
+        }));
+
+        this.todoList.addEventListener('dragstart', Tools.delegate('[data-todo-item]', (e) => {
+            this.dragged = e.target.closest('[data-todo-item]');
+
+            this.dragged.classList.add('dragged');
+        }));
+
+        this.todoList.addEventListener('dragend', Tools.delegate('[data-todo-item]', (e) => {
+            this.dragged.classList.add('dragged');
+        }));
+
+        this.todoList.addEventListener('dragover', Tools.delegate('[data-todo-item]', (e) => {
+            e.preventDefault();
+
+            let todoItem = e.target.closest('[data-todo-item]');
+
+            if(todoItem === this.dragged) {
+                return;
+            }
+
+            todoItem.classList.add('dragover');
+        }));
+
+        this.todoList.addEventListener('dragleave', Tools.delegate('[data-todo-item]', (e) => {
+            e.target.closest('[data-todo-item]').classList.remove('dragover');
+        }));
+
+        document.addEventListener('drop', Tools.delegate('[data-todo-item]', (e) => {
+            e.preventDefault();
+
+            let targetItem = e.target.closest('[data-todo-item]');
+            targetItem.classList.remove('dragover');
+
+            if(targetItem === this.dragged) {
+                this.render();
+
+                return;
+            }
+
+            let draggedTodo = this.todos.splice(this._getParentIndex(this.dragged), 1);
+            let targetIndex = this.todos.indexOf(this.todos[this._getParentIndex(targetItem)]);
+
+            this.todos.splice(targetIndex, 0, draggedTodo[0]);
+
+            this.render();
+        }));
+
         this.todoList.addEventListener('click', Tools.delegate('[value=checked]', (e) => {
             this.todos[this._getParentIndex(e.target)].checked = e.target.checked;
             this.save();
@@ -68,7 +122,15 @@ class TodoMenu extends BaseModule {
      * @param obj
      */
     add(obj) {
-        this.todos.push(obj);
+        this.insert(obj);
+    }
+
+    /**
+     * Isert item at specified index.
+     * @param obj
+     */
+    insert(obj, index = this.todos.length) {
+        this.todos.splice(index, 0, obj);
 
         this.save();
 
