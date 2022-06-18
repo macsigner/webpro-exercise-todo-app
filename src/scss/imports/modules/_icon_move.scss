@@ -1,0 +1,51 @@
+/**
+ * icon-move bem module
+ */
+
+:root {
+    --icon-move-color: #494C6B;
+}
+
+.icon-move {
+    position: relative;
+    width: 1.8rem;
+    height: 1.8rem;
+
+    > * {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: calc(100% - 4px);
+        height: 1px;
+        margin: auto;
+        background-color: var(--icon-move-color);
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            display: block;
+            border-style: solid;
+            border-color: transparent var(--icon-move-color) transparent var(--icon-move-color);
+            border-width: 5px;
+            transform: translateY(-50%);
+        }
+
+        &::before {
+            right: 100%;
+            border-left-width: 0;
+        }
+
+        &::after {
+            left: 100%;
+            border-right-width: 0;
+        }
+    }
+
+    > :last-child {
+        transform: rotate(-90deg);
+    }
+}

@@ -607,6 +607,51 @@ body > main {
 }
 
 /**
+ * icon-move bem module
+ */
+:root {
+  --icon-move-color: #494C6B;
+}
+
+.icon-move {
+  position: relative;
+  width: 1.8rem;
+  height: 1.8rem;
+}
+.icon-move > * {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 4px);
+  height: 1px;
+  margin: auto;
+  background-color: var(--icon-move-color);
+}
+.icon-move > *::before, .icon-move > *::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  display: block;
+  border-style: solid;
+  border-color: transparent var(--icon-move-color) transparent var(--icon-move-color);
+  border-width: 5px;
+  transform: translateY(-50%);
+}
+.icon-move > *::before {
+  right: 100%;
+  border-left-width: 0;
+}
+.icon-move > *::after {
+  left: 100%;
+  border-right-width: 0;
+}
+.icon-move > :last-child {
+  transform: rotate(-90deg);
+}
+
+/**
  * Todo item.
  */
 .todo-item {
@@ -774,7 +819,7 @@ body > main {
 .todo-item:hover .todo-item__actions {
   display: flex;
 }
-.todo-item__delete {
+.todo-item__delete, .todo-item__single-action {
   display: block;
   text-indent: -999em;
   width: 1.8rem;
@@ -782,6 +827,9 @@ body > main {
   background-image: url("../../images/icon-cross.svg");
   background-repeat: no-repeat;
   background-size: contain;
+}
+.todo-item__single-action {
+  background-image: none;
 }
 
 /**
