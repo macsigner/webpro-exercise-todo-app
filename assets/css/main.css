@@ -621,6 +621,12 @@ body > main {
   font-weight: 400;
   letter-spacing: -0.014em;
 }
+.todo-item.dragover {
+  background-color: var(--color-body-bg);
+}
+.todo-item.dragged {
+  opacity: 0.5;
+}
 .todo-item,
 .todo-item > label {
   display: flex;
