@@ -196,7 +196,8 @@
         display: flex;
     }
 
-    &__delete {
+    &__delete,
+    &__single-action {
         display: block;
         text-indent: -999em;
         width: 1.8rem;
@@ -204,5 +205,9 @@
         background-image: url('../../images/icon-cross.svg');
         background-repeat: no-repeat;
         background-size: contain;
+    }
+
+    &__single-action {
+        background-image: none;
     }
 }
