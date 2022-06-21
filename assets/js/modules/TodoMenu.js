@@ -68,10 +68,23 @@ class TodoMenu extends BaseModule {
                 return;
             }
 
+            let preMoveTargetIndex = this._getParentIndex(targetItem);
+            let preMoveDraggedIndex = this._getParentIndex(this.dragged);
+
+            let targetTodo = this.todos[preMoveTargetIndex];
             let draggedTodo = this.todos.splice(this._getParentIndex(this.dragged), 1);
-            let targetIndex = this.todos.indexOf(this.todos[this._getParentIndex(targetItem)]);
+            let targetIndex;
+
+            // No check for length minus 1 because of previous splice.
+            if(this.todos.length === preMoveTargetIndex && preMoveTargetIndex === preMoveDraggedIndex + 1) {
+                targetIndex = this.todos.length;
+            } else {
+                targetIndex = this.todos.indexOf(targetTodo);
+            }
 
             this.todos.splice(targetIndex, 0, draggedTodo[0]);
+
+            this.save();
 
             this.render();
         }));
