@@ -56,42 +56,16 @@ class TodoMenu extends BaseModule {
             e.target.closest('[data-todo-item]').classList.remove('dragover');
         }));
 
-        document.addEventListener('drop', Tools.delegate('[data-todo-item]', (e) => {
-            e.preventDefault();
-
-            let targetItem = e.target.closest('[data-todo-item]');
-            targetItem.classList.remove('dragover');
-
-            if(targetItem === this.dragged) {
-                this.render();
-
-                return;
-            }
-
-            let preMoveTargetIndex = this._getParentIndex(targetItem);
-            let preMoveDraggedIndex = this._getParentIndex(this.dragged);
-
-            let targetTodo = this.todos[preMoveTargetIndex];
-            let draggedTodo = this.todos.splice(this._getParentIndex(this.dragged), 1);
-            let targetIndex;
-
-            // No check for length minus 1 because of previous splice.
-            if(this.todos.length === preMoveTargetIndex && preMoveTargetIndex === preMoveDraggedIndex + 1) {
-                targetIndex = this.todos.length;
-            } else {
-                targetIndex = this.todos.indexOf(targetTodo);
-            }
-
-            this.todos.splice(targetIndex, 0, draggedTodo[0]);
-
-            this.save();
-
-            this.render();
-        }));
+        document.addEventListener(
+            'drop',
+            Tools.delegate('[data-todo-item]', this._todoItemDropListener.bind(this))
+        );
 
         this.todoList.addEventListener('click', Tools.delegate('[value=checked]', (e) => {
             this.todos[this._getParentIndex(e.target)].checked = e.target.checked;
+
             this.save();
+
             this.render();
         }));
 
@@ -101,28 +75,10 @@ class TodoMenu extends BaseModule {
         );
 
         // Todo: Exchange anonymous function with named one.
-        this.el.addEventListener('click', Tools.delegate('[data-todo-filter]', (e) => {
-            let filterButton = e.target.closest('[data-todo-filter]');
-
-            // Todo: Check matching filters. Eg. what filters are set?
-            this.el.querySelectorAll('[data-todo-filter]')
-                .forEach(el => el.classList.remove('active'));
-
-            filterButton.classList.add('active');
-
-            switch (filterButton.dataset.todoFilter) {
-                case '*':
-                    delete this.filter.checked;
-                    break;
-                case 'complete':
-                    this.filter.checked = true;
-                    break;
-                case 'active':
-                    this.filter.checked = false;
-            }
-
-            this.render();
-        }));
+        this.el.addEventListener(
+            'click',
+            Tools.delegate('[data-todo-filter]', this._filterListener.bind(this))
+        );
 
         this.form = this.el.querySelector('[data-todo-form]');
         this.form.addEventListener('submit', this._todoFormListener.bind(this));
@@ -178,6 +134,71 @@ class TodoMenu extends BaseModule {
                 return item;
             }
         });
+
+        this.save();
+
+        this.render();
+    }
+
+    /**
+     * Handle click event on filter buttons.
+     * @param e
+     * @private
+     */
+    _filterListener(e) {
+        let filterButton = e.target.closest('[data-todo-filter]');
+
+        // Todo: Check matching filters. Eg. what filters are set?
+        this.el.querySelectorAll('[data-todo-filter]')
+            .forEach(el => el.classList.remove('active'));
+
+        filterButton.classList.add('active');
+
+        switch (filterButton.dataset.todoFilter) {
+            case '*':
+                delete this.filter.checked;
+                break;
+            case 'complete':
+                this.filter.checked = true;
+                break;
+            case 'active':
+                this.filter.checked = false;
+        }
+
+        this.render();
+    }
+    /**
+     * Handle drop event on todo item.
+     * @param e
+     * @private
+     */
+    _todoItemDropListener(e) {
+        e.preventDefault();
+
+        let targetItem = e.target.closest('[data-todo-item]');
+        targetItem.classList.remove('dragover');
+
+        if(targetItem === this.dragged) {
+            this.render();
+
+            return;
+        }
+
+        let preMoveTargetIndex = this._getParentIndex(targetItem);
+        let preMoveDraggedIndex = this._getParentIndex(this.dragged);
+
+        let targetTodo = this.todos[preMoveTargetIndex];
+        let draggedTodo = this.todos.splice(this._getParentIndex(this.dragged), 1);
+        let targetIndex;
+
+        // No check for length minus 1 because of previous splice.
+        if(this.todos.length === preMoveTargetIndex && preMoveTargetIndex === preMoveDraggedIndex + 1) {
+            targetIndex = this.todos.length;
+        } else {
+            targetIndex = this.todos.indexOf(targetTodo);
+        }
+
+        this.todos.splice(targetIndex, 0, draggedTodo[0]);
 
         this.save();
 
