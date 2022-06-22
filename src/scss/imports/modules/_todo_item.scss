@@ -3,6 +3,7 @@
  */
 .todo-item {
     &.dragover {
+        z-index: 1;
         background-color: var(--color-body-bg);
     }
 
@@ -16,6 +17,16 @@
         align-items: center;
     }
 
+    & > .clone {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: scale(.2);
+    }
+
+    position: relative;
     padding: $list-padding;
     padding: var(--list-padding);
     border-bottom-style: solid;
@@ -209,5 +220,51 @@
 
     &__single-action {
         background-image: none;
+    }
+
+    &__dropzone {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: 8em;
+        height: 2em;
+        margin: auto;
+        border-radius: 1em;
+        transform: translateY(-50%) scale(0);
+        background-image: var(--checkbox-gradient);
+
+        &::before,
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 1em;
+            height: 1px;
+            margin: auto;
+            background-color: var(--color-bg);
+        }
+
+        &::after {
+            transform: rotate(-90deg);
+        }
+    }
+
+    &__dropzone ~ &__dropzone {
+        top: 100%;
+    }
+
+    &.dragover &__dropzone {
+        transform: translateY(-50%) scale(1);
+    }
+
+    & &__dropzone.dragover {
+        transform: translateY(-50%) scale(1.2);
+        transition-duration: 0s;
     }
 }

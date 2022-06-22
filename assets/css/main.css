@@ -655,6 +655,7 @@ body > main {
  * Todo item.
  */
 .todo-item {
+  position: relative;
   padding: 1.9rem 2.4rem 1.8rem;
   padding: var(--list-padding);
   border-bottom-style: solid;
@@ -667,6 +668,7 @@ body > main {
   letter-spacing: -0.014em;
 }
 .todo-item.dragover {
+  z-index: 1;
   background-color: var(--color-body-bg);
 }
 .todo-item.dragged {
@@ -676,6 +678,14 @@ body > main {
 .todo-item > label {
   display: flex;
   align-items: center;
+}
+.todo-item > .clone {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: scale(0.2);
 }
 .todo-item > label {
   flex: 0 0 100%;
@@ -830,6 +840,45 @@ body > main {
 }
 .todo-item__single-action {
   background-image: none;
+}
+.todo-item__dropzone {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 8em;
+  height: 2em;
+  margin: auto;
+  border-radius: 1em;
+  transform: translateY(-50%) scale(0);
+  background-image: var(--checkbox-gradient);
+}
+.todo-item__dropzone::before, .todo-item__dropzone::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 1em;
+  height: 1px;
+  margin: auto;
+  background-color: var(--color-bg);
+}
+.todo-item__dropzone::after {
+  transform: rotate(-90deg);
+}
+.todo-item__dropzone ~ .todo-item__dropzone {
+  top: 100%;
+}
+.todo-item.dragover .todo-item__dropzone {
+  transform: translateY(-50%) scale(1);
+}
+.todo-item .todo-item__dropzone.dragover {
+  transform: translateY(-50%) scale(1.2);
+  transition-duration: 0s;
 }
 
 /**

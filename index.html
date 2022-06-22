@@ -32,7 +32,7 @@
             <div class="todo-counter shadow-wrapper">
                 <ul data-todo-list>
                     <template data-todo-item-template>
-                        <li class="todo-item" data-todo-item>
+                        <li class="todo-item" data-todo-item data-todo-item-dropzone>
                             <label>
                                 <input class="todo-item__checkbox" value="checked" type="checkbox"/>
                                 <span class="todo-item__label">
@@ -44,6 +44,8 @@
                                     </span>
                                 </span>
                             </label>
+                            <span class="todo-item__dropzone" data-todo-item-dropzone="" aria-hidden="true"></span>
+                            <span class="todo-item__dropzone" data-todo-item-dropzone="after" aria-hidden="true"></span>
                         </li>
                     </template>
                 </ul>
