@@ -37,28 +37,35 @@ class TodoMenu extends BaseModule {
         }));
 
         this.todoList.addEventListener('dragend', Tools.delegate('[data-todo-item]', (e) => {
-            this.dragged.classList.add('dragged');
+            this.render();
         }));
 
-        this.todoList.addEventListener('dragover', Tools.delegate('[data-todo-item]', (e) => {
+        this.todoList.addEventListener('dragover', Tools.delegate('[data-todo-item-dropzone]', (e) => {
             e.preventDefault();
 
             let todoItem = e.target.closest('[data-todo-item]');
+            let dropzone = e.target.closest('[data-todo-item-dropzone]');
 
             if(todoItem === this.dragged) {
                 return;
             }
 
+            this.menu.querySelectorAll('[data-todo-item]')
+                .forEach(el => el.classList.remove('dragover'));
+
+            this.menu.querySelectorAll('[data-todo-item-dropzone]')
+                .forEach(el => el.classList.remove('dragover'));
+
             todoItem.classList.add('dragover');
+            dropzone.classList.add('dragover');
         }));
 
-        this.todoList.addEventListener('dragleave', Tools.delegate('[data-todo-item]', (e) => {
-            e.target.closest('[data-todo-item]').classList.remove('dragover');
+        this.todoList.addEventListener('dragleave', Tools.delegate('[data-todo-item-dropzone]', (e) => {
         }));
 
         document.addEventListener(
             'drop',
-            Tools.delegate('[data-todo-item]', this._todoItemDropListener.bind(this))
+            Tools.delegate('[data-todo-item-dropzone]', this._todoItemDropListener.bind(this))
         );
 
         this.todoList.addEventListener('click', Tools.delegate('[value=checked]', (e) => {
@@ -175,7 +182,7 @@ class TodoMenu extends BaseModule {
     _todoItemDropListener(e) {
         e.preventDefault();
 
-        let targetItem = e.target.closest('[data-todo-item]');
+        let targetItem = e.target.closest('[data-todo-item-dropzone]');
         targetItem.classList.remove('dragover');
 
         if(targetItem === this.dragged) {
@@ -184,21 +191,17 @@ class TodoMenu extends BaseModule {
             return;
         }
 
-        let preMoveTargetIndex = this._getParentIndex(targetItem);
-        let preMoveDraggedIndex = this._getParentIndex(this.dragged);
+        e.stopPropagation();
 
-        let targetTodo = this.todos[preMoveTargetIndex];
-        let draggedTodo = this.todos.splice(this._getParentIndex(this.dragged), 1);
-        let targetIndex;
+        let targetTodo = this.todos[this._getParentIndex(targetItem)];
+        let draggedTodo = this.todos.splice(this._getParentIndex(this.dragged), 1)[0];
+        let targetIndex = this.todos.indexOf(targetTodo);
 
-        // No check for length minus 1 because of previous splice.
-        if(this.todos.length === preMoveTargetIndex && preMoveTargetIndex === preMoveDraggedIndex + 1) {
-            targetIndex = this.todos.length;
-        } else {
-            targetIndex = this.todos.indexOf(targetTodo);
+        if(targetItem.dataset.todoItemDropzone === 'after') {
+            targetIndex += 1;
         }
 
-        this.todos.splice(targetIndex, 0, draggedTodo[0]);
+        this.todos.splice(targetIndex, 0, draggedTodo);
 
         this.save();
 
