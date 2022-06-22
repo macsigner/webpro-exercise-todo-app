@@ -17,6 +17,15 @@
         align-items: center;
     }
 
+    & > .clone {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: scale(.2);
+    }
+
     position: relative;
     padding: $list-padding;
     padding: var(--list-padding);
@@ -219,10 +228,10 @@
         top: 0;
         right: 0;
         left: 0;
-        width: 4em;
-        height: 1.6em;
+        width: 8em;
+        height: 2em;
         margin: auto;
-        border-radius: .8em;
+        border-radius: 1em;
         transform: translateY(-50%) scale(0);
         background-image: var(--checkbox-gradient);
 
@@ -246,16 +255,16 @@
         }
     }
 
-    &__dropzone.dragover {
-        transform: translateY(-50%) scale(1.2);
-        transition-duration: 0s;
-    }
-
     &__dropzone ~ &__dropzone {
         top: 100%;
     }
 
     &.dragover &__dropzone {
         transform: translateY(-50%) scale(1);
+    }
+
+    & &__dropzone.dragover {
+        transform: translateY(-50%) scale(1.2);
+        transition-duration: 0s;
     }
 }

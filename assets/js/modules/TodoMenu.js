@@ -22,51 +22,7 @@ class TodoMenu extends BaseModule {
             this.remove(this._getParentIndex(e.target));
         }));
 
-        this.todoList.addEventListener('mouseover', Tools.delegate('[data-todo-item-action=drag]', (e) => {
-            e.target.closest('[data-todo-item]').draggable = true;
-        }));
-
-        this.todoList.addEventListener('mouseout', Tools.delegate('[data-todo-item-action=drag]', (e) => {
-            e.target.closest('[data-todo-item]').draggable = false;
-        }));
-
-        this.todoList.addEventListener('dragstart', Tools.delegate('[data-todo-item]', (e) => {
-            this.dragged = e.target.closest('[data-todo-item]');
-
-            this.dragged.classList.add('dragged');
-        }));
-
-        this.todoList.addEventListener('dragend', Tools.delegate('[data-todo-item]', (e) => {
-            this.render();
-        }));
-
-        this.todoList.addEventListener('dragover', Tools.delegate('[data-todo-item-dropzone]', (e) => {
-            e.preventDefault();
-
-            let todoItem = e.target.closest('[data-todo-item]');
-            let dropzone = e.target.closest('[data-todo-item-dropzone]');
-
-            if(todoItem === this.dragged) {
-                return;
-            }
-
-            this.menu.querySelectorAll('[data-todo-item]')
-                .forEach(el => el.classList.remove('dragover'));
-
-            this.menu.querySelectorAll('[data-todo-item-dropzone]')
-                .forEach(el => el.classList.remove('dragover'));
-
-            todoItem.classList.add('dragover');
-            dropzone.classList.add('dragover');
-        }));
-
-        this.todoList.addEventListener('dragleave', Tools.delegate('[data-todo-item-dropzone]', (e) => {
-        }));
-
-        document.addEventListener(
-            'drop',
-            Tools.delegate('[data-todo-item-dropzone]', this._todoItemDropListener.bind(this))
-        );
+        this._applyDragEvents();
 
         this.todoList.addEventListener('click', Tools.delegate('[value=checked]', (e) => {
             this.todos[this._getParentIndex(e.target)].checked = e.target.checked;
@@ -81,7 +37,6 @@ class TodoMenu extends BaseModule {
             Tools.delegate('[data-todo-action=clearCompleted]', this.clearCompleted.bind(this)),
         );
 
-        // Todo: Exchange anonymous function with named one.
         this.el.addEventListener(
             'click',
             Tools.delegate('[data-todo-filter]', this._filterListener.bind(this))
@@ -232,6 +187,67 @@ class TodoMenu extends BaseModule {
 
             this.form.reset();
         }
+    }
+
+    /**
+     * Apply drag events to todo list.
+     * @private
+     */
+    _applyDragEvents() {
+        this.todoList.addEventListener('mouseover', Tools.delegate('[data-todo-item-action=drag]', (e) => {
+            e.target.closest('[data-todo-item]').draggable = true;
+        }));
+
+        this.todoList.addEventListener('mouseout', Tools.delegate('[data-todo-item-action=drag]', (e) => {
+            e.target.closest('[data-todo-item]').draggable = false;
+        }));
+
+        this.todoList.addEventListener('dragstart', Tools.delegate('[data-todo-item]', (e) => {
+            this.dragged = e.target.closest('[data-todo-item]');
+
+            let dragIcon = document.querySelector('.icon-move');
+
+            e.dataTransfer.setData('text/plain', this.dragged.dataset.todoIndex);
+            e.dataTransfer.setDragImage(dragIcon, 10, 10);
+
+            this.dragged.classList.add('dragged');
+        }));
+
+        this.todoList.addEventListener('dragend', Tools.delegate('[data-todo-item]', (e) => {
+            this.render();
+        }));
+
+        this.todoList.addEventListener('dragover', Tools.delegate('[data-todo-item-dropzone]', (e) => {
+            e.preventDefault();
+        }));
+
+        this.todoList.addEventListener('dragenter', Tools.delegate('[data-todo-item-dropzone]', (e) => {
+            e.preventDefault();
+
+            let todoItem = e.target.closest('[data-todo-item]');
+            let dropzone = e.target.closest('[data-todo-item-dropzone]');
+
+            if(todoItem === this.dragged) {
+                return;
+            }
+
+            this.menu.querySelectorAll('[data-todo-item]')
+                .forEach(el => el.classList.remove('dragover'));
+
+            this.menu.querySelectorAll('[data-todo-item-dropzone]')
+                .forEach(el => el.classList.remove('dragover'));
+
+            todoItem.classList.add('dragover');
+            dropzone.classList.add('dragover');
+        }));
+
+        this.todoList.addEventListener('dragleave', Tools.delegate('[data-todo-item-dropzone]', (e) => {
+        }));
+
+        document.addEventListener(
+            'drop',
+            Tools.delegate('[data-todo-item-dropzone]', this._todoItemDropListener.bind(this))
+        );
     }
 
     /**
