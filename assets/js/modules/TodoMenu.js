@@ -57,8 +57,9 @@ class TodoMenu extends BaseModule {
     }
 
     /**
-     * Isert item at specified index.
-     * @param obj
+     * Insert item at specified index.
+     * @param {*} obj
+     * @param {number} index
      */
     insert(obj, index = this.todos.length) {
         this.todos.splice(index, 0, obj);
@@ -69,7 +70,7 @@ class TodoMenu extends BaseModule {
     }
 
     /**
-     * Save current State.
+     * Save current state.
      */
     save() {
         window.localStorage.setItem('todos', JSON.stringify(this.todos));
