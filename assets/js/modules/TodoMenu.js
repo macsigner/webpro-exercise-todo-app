@@ -297,6 +297,12 @@ class TodoMenu extends BaseModule {
         this.todoList.appendChild(todo);
     }
 
+    /**
+     * Check if given item matches current filter.
+     * @param item
+     * @returns {boolean}
+     * @private
+     */
     _matchesFilter(item) {
         if(Object.keys(this.filter).length === 0) {
             return true;
