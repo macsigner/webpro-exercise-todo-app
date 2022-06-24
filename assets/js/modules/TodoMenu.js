@@ -206,10 +206,18 @@ class TodoMenu extends BaseModule {
         this.todoList.addEventListener('dragstart', Tools.delegate('[data-todo-item]', (e) => {
             this.dragged = e.target.closest('[data-todo-item]');
 
-            let dragIcon = document.querySelector('.icon-move');
+            let clone = this.dragged.cloneNode(true);
+            let cloneWrapper = document.createElement('div');
+
+            clone.classList.add('clone');
+            cloneWrapper.appendChild(clone);
+
+            this.dragged.appendChild(cloneWrapper);
 
             e.dataTransfer.setData('text/plain', this.dragged.dataset.todoIndex);
-            e.dataTransfer.setDragImage(dragIcon, 10, 10);
+
+            e.dataTransfer.setDragImage(cloneWrapper, 4, 4);
+            setTimeout(() => cloneWrapper.remove(), 1);
 
             this.dragged.classList.add('dragged');
         }));
