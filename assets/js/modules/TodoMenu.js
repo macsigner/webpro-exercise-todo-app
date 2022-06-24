@@ -219,6 +219,14 @@ class TodoMenu extends BaseModule {
             e.dataTransfer.setDragImage(cloneWrapper, 4, 4);
             setTimeout(() => cloneWrapper.remove(), 1);
 
+            if (this.dragged.previousElementSibling) {
+                this.dragged.previousElementSibling.classList.add('prev-drop-sibling');
+            }
+
+            if (this.dragged.nextElementSibling) {
+                this.dragged.nextElementSibling.classList.add('next-drop-sibling');
+            }
+
             this.dragged.classList.add('dragged');
         }));
 

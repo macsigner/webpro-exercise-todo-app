@@ -17,7 +17,7 @@
         align-items: center;
     }
 
-    & &.clone {
+    &.clone {
         overflow: hidden;
         position: absolute;
         top: 0;
@@ -270,5 +270,10 @@
 
     & &__dropzone.dragover {
         transform: translateY(-50%) scale(1.2);
+    }
+
+    &.prev-drop-sibling &__dropzone ~ &__dropzone,
+    &.next-drop-sibling &__dropzone:not(&__dropzone ~ &__dropzone) {
+        display: none;
     }
 }
