@@ -57,8 +57,9 @@ class TodoMenu extends BaseModule {
     }
 
     /**
-     * Isert item at specified index.
-     * @param obj
+     * Insert item at specified index.
+     * @param {*} obj
+     * @param {number} index
      */
     insert(obj, index = this.todos.length) {
         this.todos.splice(index, 0, obj);
@@ -69,7 +70,7 @@ class TodoMenu extends BaseModule {
     }
 
     /**
-     * Save current State.
+     * Save current state.
      */
     save() {
         window.localStorage.setItem('todos', JSON.stringify(this.todos));
@@ -205,10 +206,26 @@ class TodoMenu extends BaseModule {
         this.todoList.addEventListener('dragstart', Tools.delegate('[data-todo-item]', (e) => {
             this.dragged = e.target.closest('[data-todo-item]');
 
-            let dragIcon = document.querySelector('.icon-move');
+            let clone = this.dragged.cloneNode(true);
+            let cloneWrapper = document.createElement('div');
+
+            clone.classList.add('clone');
+            cloneWrapper.appendChild(clone);
+
+            this.dragged.appendChild(cloneWrapper);
 
             e.dataTransfer.setData('text/plain', this.dragged.dataset.todoIndex);
-            e.dataTransfer.setDragImage(dragIcon, 10, 10);
+
+            e.dataTransfer.setDragImage(cloneWrapper, 4, 4);
+            setTimeout(() => cloneWrapper.remove(), 1);
+
+            if (this.dragged.previousElementSibling) {
+                this.dragged.previousElementSibling.classList.add('prev-drop-sibling');
+            }
+
+            if (this.dragged.nextElementSibling) {
+                this.dragged.nextElementSibling.classList.add('next-drop-sibling');
+            }
 
             this.dragged.classList.add('dragged');
         }));
@@ -296,6 +313,12 @@ class TodoMenu extends BaseModule {
         this.todoList.appendChild(todo);
     }
 
+    /**
+     * Check if given item matches current filter.
+     * @param item
+     * @returns {boolean}
+     * @private
+     */
     _matchesFilter(item) {
         if(Object.keys(this.filter).length === 0) {
             return true;

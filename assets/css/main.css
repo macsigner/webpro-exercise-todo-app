@@ -614,6 +614,7 @@ body > main {
 }
 
 .icon-move {
+  display: block;
   position: relative;
   width: 1.8rem;
   height: 1.8rem;
@@ -679,13 +680,18 @@ body > main {
   display: flex;
   align-items: center;
 }
-.todo-item > .clone {
+.todo-item.clone {
+  overflow: hidden;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  transform: scale(0.2);
+  border-radius: var(--default-radius);
+  transform-origin: 0% 0%;
+  pointer-events: none;
+  transform: scale(0.5);
+  transition: none !important;
 }
 .todo-item > label {
   flex: 0 0 100%;
@@ -851,8 +857,8 @@ body > main {
   height: 2em;
   margin: auto;
   border-radius: 1em;
-  transform: translateY(-50%) scale(0);
   background-image: var(--checkbox-gradient);
+  transform: translateY(-50%) scale(0);
 }
 .todo-item__dropzone::before, .todo-item__dropzone::after {
   content: "";
@@ -878,7 +884,9 @@ body > main {
 }
 .todo-item .todo-item__dropzone.dragover {
   transform: translateY(-50%) scale(1.2);
-  transition-duration: 0s;
+}
+.todo-item.prev-drop-sibling .todo-item__dropzone ~ .todo-item__dropzone, .todo-item.next-drop-sibling .todo-item__dropzone:not(.todo-item__dropzone ~ .todo-item__dropzone) {
+  display: none;
 }
 
 /**
