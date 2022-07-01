@@ -354,7 +354,7 @@ class TodoMenu extends BaseModule {
         if (localItems !== null && localItems.length > 2) {
             this._setTodos(JSON.parse(localItems));
         } else {
-            fetch('./assets/data/todos.json')
+            fetch('./data/todos.json')
                 .then(response => response.json())
                 .then(this._setTodos.bind(this));
             // Todo: Handle errors

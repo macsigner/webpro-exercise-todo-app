@@ -1,6 +1,10 @@
 const path = require('path');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+
 module.exports = {
+    mode: 'development',
     entry: './src/js/app.js',
     output: {
         filename: 'app.js',
@@ -16,6 +20,22 @@ module.exports = {
                     'sass-loader',
                 ],
             },
+            {
+                test: /\.html$/i,
+                use: [
+                    'html-loader',
+                ],
+            },
         ],
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "./src/index.html",
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: 'src/data', to: 'data'}
+            ]
+        })
+    ],
 }
