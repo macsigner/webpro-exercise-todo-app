@@ -4,6 +4,7 @@
     "description": "Web Pro Todo List",
     "main": "index.js",
     "scripts": {
+        "start": "webpack",
         "watch": "sass --watch src/scss/:assets/css/",
         "build": "sass --no-source-map src/scss/:assets/css/",
         "predeploy": "rm -rf assets/css && npm run build",
@@ -24,6 +25,8 @@
     "devDependencies": {
         "gh-pages": "^3.2.3",
         "normalize.css": "^8.0.1",
-        "sass": "^1.49.9"
+        "sass": "^1.49.9",
+        "webpack": "^5.73.0",
+        "webpack-cli": "^4.10.0"
     }
 }
