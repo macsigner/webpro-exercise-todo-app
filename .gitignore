@@ -19,3 +19,4 @@
 /assets/css/*.css
 /assets/css/*.map
 /node_modules
+/dist
