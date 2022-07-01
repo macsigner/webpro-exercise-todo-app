@@ -26,6 +26,10 @@ module.exports = {
                     'html-loader',
                 ],
             },
+            {
+                test: /\.(svg|png|jpg|gif)$/,
+                type: 'asset/resource',
+            }
         ],
     },
     plugins: [
@@ -34,7 +38,7 @@ module.exports = {
         }),
         new CopyPlugin({
             patterns: [
-                { from: 'src/data', to: 'data'}
+                { from: 'src/data', to: 'data'},
             ]
         })
     ],
