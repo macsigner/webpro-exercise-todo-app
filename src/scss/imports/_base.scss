@@ -82,7 +82,7 @@ body > main {
     margin-bottom: calc(#{$header-inset} * -1);
     margin-bottom: calc(var(--header-inset) * -1);
     padding-top: calc(300 / 1440 * 100%);
-    background-image: url('../../images/bg-desktop-light.jpg');
+    background-image: url('/src/assets/images/bg-desktop-light.jpg');
     background-image: var(--pseudo-header-image);
     background-repeat: no-repeat;
     background-size: cover;

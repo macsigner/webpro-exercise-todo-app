@@ -135,7 +135,7 @@
             right: 0;
             bottom: 0;
             left: 0;
-            background-image: url('../../images/icon-check.svg');
+            background-image: url('/src/assets/images/icon-check.svg');
             background-size: 50%;
             transform: scale(0);
         }
@@ -218,7 +218,7 @@
         text-indent: -999em;
         width: 1.8rem;
         height: 1.8rem;
-        background-image: url('../../images/icon-cross.svg');
+        background-image: url('/src/assets/images/icon-cross.svg');
         background-repeat: no-repeat;
         background-size: contain;
     }

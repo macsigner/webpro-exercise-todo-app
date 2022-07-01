@@ -1,5 +1,7 @@
 'use strict';
 
+import '../scss/main.scss';
+
 import TodoMenu from './modules/TodoMenu.js';
 
 const nlTodoList = document.querySelectorAll('[data-todo-app=menu]');
