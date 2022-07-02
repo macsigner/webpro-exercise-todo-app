@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Web Pro Todo List",
     "scripts": {
-        "start": "webpack serve --open --config webpack.dev.js",
+        "start": "webpack-dev-server --open --config webpack.dev.js",
         "build": "webpack --config webpack.prod.js",
         "predeploy": "rm -rf dist && npm run build",
         "deploy": "npm run predeploy && npm run ghPages",
@@ -21,11 +21,13 @@
     },
     "homepage": "https://github.com/macsigner/webpro-exercise-todo-app#readme",
     "devDependencies": {
+        "clean-webpack-plugin": "^4.0.0",
         "copy-webpack-plugin": "^11.0.0",
         "css-loader": "^6.7.1",
         "gh-pages": "^3.2.3",
         "html-loader": "^3.1.2",
         "html-webpack-plugin": "^5.5.0",
+        "mini-css-extract-plugin": "^2.6.1",
         "normalize.css": "^8.0.1",
         "sass": "^1.49.9",
         "sass-loader": "^13.0.2",
