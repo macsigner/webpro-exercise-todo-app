@@ -1,6 +1,6 @@
 'use strict';
 
-import '../scss/main.scss';
+import '/src/scss/main.scss';
 
 import TodoMenu from './modules/TodoMenu.js';
 
