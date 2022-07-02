@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 
 module.exports = {
@@ -30,8 +29,5 @@ module.exports = {
                 {from: 'src/data', to: 'data'},
             ]
         }),
-        new MiniCssExtractPlugin({
-            filename: '[name].[contenthash].css',
-        })
     ],
 }
