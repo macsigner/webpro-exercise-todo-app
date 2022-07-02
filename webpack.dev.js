@@ -10,17 +10,17 @@ module.exports = merge(common, {
             path: path.resolve(__dirname, 'dist'),
             assetModuleFilename: 'assets/[name][ext]',
         },
-    module: {
-        rules: [
-            {
-                test: /\.scss$/i,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader',
-                ],
-            },
-        ]
-    }
+        module: {
+            rules: [
+                {
+                    test: /\.scss$/i,
+                    use: [
+                        'style-loader',
+                        'css-loader',
+                        'sass-loader',
+                    ],
+                },
+            ]
+        }
     }
 )
