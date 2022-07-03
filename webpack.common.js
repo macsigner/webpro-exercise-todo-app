@@ -2,9 +2,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
+const pages = ['index', 'news', 'form'];
 
 module.exports = {
-    entry: './src/js/app.js',
+    entry: Object.assign({
+        app: './src/js/app.js',
+    }, pages.reduce((config, page) => {
+        config[page] = `./src/js/${page}.js`;
+
+        return config;
+    }, {})),
     module: {
         rules: [
             {
@@ -21,13 +28,21 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            template: "./src/index.html",
-        }),
         new CopyPlugin({
             patterns: [
                 {from: 'src/data', to: 'data'},
             ]
         }),
-    ],
+    ].concat(
+        pages.map(
+            (page) => {
+                return new HtmlWebpackPlugin({
+                    inject: true,
+                    template: `./src/${page}.html`,
+                    filename: `${page}.html`,
+                    chunks: ['app', page],
+                });
+            }
+        )
+    ),
 }
