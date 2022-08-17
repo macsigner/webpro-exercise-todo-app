@@ -3,6 +3,7 @@
 import '/src/scss/main.scss';
 
 import TodoMenu from './modules/TodoMenu.js';
+import SettingsMenu from './modules/SettingsMenu.js';
 
 const nlTodoList = document.querySelectorAll('[data-todo-app=menu]');
 
@@ -13,3 +14,5 @@ const nlModeToggles = document.querySelectorAll('[data-mode-switch]');
 nlModeToggles.forEach(el => el.addEventListener('click', e => {
     document.documentElement.classList.toggle('switch-mode');
 }));
+
+new SettingsMenu();

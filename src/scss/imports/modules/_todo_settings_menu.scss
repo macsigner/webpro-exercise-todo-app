@@ -1,0 +1,40 @@
+/* **************************************************************************
+ *  MEDIA MOTION AG                                                         *
+ ****************************************************************************
+
+    Funktion      todo-settings-menu bem module
+    Authors       Mac Signer
+    Datum         16.08.22
+
+*****************************************************************************/
+
+/*
+.todo-settings-menu
+
+Styleguide classes.todo-settings-menu
+*/
+
+.todo-settings-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40rem;
+    background-color: $color-white;
+
+    &--is-active {
+        display: block;
+    }
+
+    &__close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 3rem;
+        height: 3rem;
+        background-image: url('/src/assets/images/icon-cross.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}

@@ -24,4 +24,8 @@
         margin-top: .6rem;
         margin-left: auto;
     }
+
+    &__action + &__action {
+        margin-left: 2rem;
+    }
 }
