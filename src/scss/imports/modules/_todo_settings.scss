@@ -1,0 +1,33 @@
+/* **************************************************************************
+ *  MEDIA MOTION AG                                                         *
+ ****************************************************************************
+
+    Funktion      todo-settings bem module
+    Authors       Mac Signer
+    Datum         17.08.22
+
+*****************************************************************************/
+
+/*
+.todo-settings
+
+Styleguide classes.todo-settings
+*/
+
+.todo-settings {
+    &__text-field {
+        @extend .todo-item;
+    }
+
+    &__label {
+        @extend .todo-item__label;
+    }
+
+    &__checkbox {
+        @extend .todo-item__checkbox;
+    }
+
+    &__pseudo-checkbox {
+        @extend .todo-item__pseudo-checkbox;
+    }
+}

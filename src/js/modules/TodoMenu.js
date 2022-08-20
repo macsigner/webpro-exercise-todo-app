@@ -1,5 +1,6 @@
 import BaseModule from './BaseModule.js';
 import * as Tools from '../tools.js';
+import AppSettings from './AppSettings';
 /**
  * Todomenu.
  */
@@ -8,10 +9,19 @@ class TodoMenu extends BaseModule {
      * Construct the object.
      * @param el
      */
-    constructor(el) {
+    constructor(el, options = {}) {
         super();
 
         this.el = el;
+        this._defaultSettings = {
+            settingsNamespace: 'todoSettings',
+        }
+        this._customSettings = options;
+        this.settings = this.mapOptions(this._defaultSettings, this._customSettings);
+        this._appSettings = new AppSettings({
+            namespace: this.getSettingsNamespace(),
+        });
+
         this.menu = this.el.querySelector('[data-todo-list]');
         this.todoList = this.menu;
         this.itemTemplate = this._getTemplate();
@@ -39,8 +49,12 @@ class TodoMenu extends BaseModule {
 
         this.el.addEventListener(
             'click',
-            Tools.delegate('[data-todo-filter]', this._filterListener.bind(this))
+            Tools.delegate('[data-todo-filter]', this._filterListener.bind(this)),
         );
+
+        window.addEventListener(this.getSettingsNamespace('AfterSet'), (e) => {
+            console.log(e.detail);
+        });
 
         this.form = this.el.querySelector('[data-todo-form]');
         this.form.addEventListener('submit', this._todoFormListener.bind(this));
@@ -74,6 +88,22 @@ class TodoMenu extends BaseModule {
      */
     save() {
         window.localStorage.setItem('todos', JSON.stringify(this.todos));
+
+        let remotePath = this._appSettings.get('safeToRemote');
+
+        if (!remotePath) {
+            return;
+        }
+
+        fetch(remotePath, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(this.todos),
+        }).catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     /**
@@ -387,6 +417,15 @@ class TodoMenu extends BaseModule {
         for (let key in this.todos) {
             this._createItem(this.todos[key], key);
         }
+    }
+
+    /**
+     * Get settings namespace.
+     * @param suffix
+     * @returns {string}
+     */
+    getSettingsNamespace(suffix = '') {
+        return this.settings.settingsNamespace + suffix;
     }
 }
 

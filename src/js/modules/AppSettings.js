@@ -8,7 +8,7 @@ class AppSettings extends BaseModule {
      * Construct.
      * @param settings
      */
-    constructor(settings) {
+    constructor(settings = {}) {
         super();
 
         this._defaultSettings = {
@@ -17,6 +17,13 @@ class AppSettings extends BaseModule {
         }
         this._customSettings = settings;
         this._settings = this.mapOptions(this._defaultSettings, this._customSettings);
+
+        let instance = this.getInstance(this.getNamespace());
+        if (instance) {
+            return instance;
+        }
+
+        this.addToInstances();
     }
 
     /**
@@ -27,12 +34,12 @@ class AppSettings extends BaseModule {
     set(property, value) {
         this._settings[property] = value;
 
-        AppSettings.dispatchEvent(new CustomEvent(this.getNamespace('afterSet'), {
+        window.dispatchEvent(new CustomEvent(this.getNamespace('AfterSet'), {
             detail: {
                 AppSettings: this,
                 property,
                 value,
-            }
+            },
         }));
     }
 
@@ -44,7 +51,40 @@ class AppSettings extends BaseModule {
     get(property) {
         return this._settings[property];
     }
+
+    /**
+     * Get all _settings.
+     * @returns {*}
+     */
+    getAll() {
+        return this._settings;
+    }
+
+    getNamespace(strSuffix = '') {
+        return this._settings.namespace + strSuffix;
+    }
 }
+
+/**
+ *
+ * @type {Set<any>}
+ */
+AppSettings.prototype.instances = new Set();
+
+AppSettings.prototype.addToInstances = function () {
+    AppSettings.prototype.instances.add(this);
+};
+
+AppSettings.prototype.getInstance = function (namespace) {
+    console.log(namespace);
+    for (let set = AppSettings.prototype.instances.values(), val = null; val = set.next().value;) {
+        if (val.getNamespace() === namespace) {
+            return val;
+        }
+    }
+
+    return false;
+};
 
 export default AppSettings;
 
