@@ -122,11 +122,7 @@ class TodoMenu extends BaseModule {
      * Remove completed items from todo list.
      */
     clearCompleted() {
-        this.todos = this.todos.filter(item => {
-            if (!item.checked) {
-                return item;
-            }
-        });
+        this.todos = this.todos.filter(item => !item.checked);
 
         this.save();
 
