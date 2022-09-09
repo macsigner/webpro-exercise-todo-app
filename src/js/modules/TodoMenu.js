@@ -25,7 +25,7 @@ class TodoMenu extends BaseModule {
         this._applyDragEvents();
 
         this.todoList.addEventListener('click', Tools.delegate('[value=checked]', (e) => {
-            this.todos[this._getParentIndex(e.target)].checked = e.target.checked;
+            this.todos[this._getParentIndex(e.target)].completed = e.target.checked ? 1 : 0 ;
 
             this.save();
 
@@ -92,11 +92,7 @@ class TodoMenu extends BaseModule {
      * Remove completed items from todo list.
      */
     clearCompleted() {
-        this.todos = this.todos.filter(item => {
-            if (!item.checked) {
-                return item;
-            }
-        });
+        this.todos = this.todos.filter(item => item.completed === 0);
 
         this.save();
 
@@ -119,13 +115,13 @@ class TodoMenu extends BaseModule {
 
         switch (filterButton.dataset.todoFilter) {
             case '*':
-                delete this.filter.checked;
+                delete this.filter.completed;
                 break;
             case 'complete':
-                this.filter.checked = true;
+                this.filter.completed = 1;
                 break;
             case 'active':
-                this.filter.checked = false;
+                this.filter.completed = 0;
         }
 
         this.render();
@@ -173,7 +169,7 @@ class TodoMenu extends BaseModule {
         e.preventDefault();
 
         let todo = {
-            checked: false,
+            completed: false,
         }
 
         let formData = new FormData(this.form);
@@ -305,8 +301,8 @@ class TodoMenu extends BaseModule {
             }
         });
 
-        todo.querySelector('input[value=checked]').checked = item.checked;
-        item.checked ? todo.firstElementChild.classList.add('checked') : '';
+        todo.querySelector('input[value=checked]').checked = item.completed ? true : false;
+        item.completed ? todo.firstElementChild.classList.add('checked') : '';
 
         todo.firstElementChild.dataset.todoIndex = index;
 
@@ -348,6 +344,21 @@ class TodoMenu extends BaseModule {
      * @private
      */
     _readItems() {
+        fetch('http://localhost:3000/todos')
+            .then(response => {
+                if (!response.ok) {
+                    throw response;
+                }
+
+                return response.json()
+            })
+            .then(this._setTodos.bind(this))
+            .catch((error) => {
+                this._readItemsFromLocalStorage();
+            });
+    }
+
+    _readItemsFromLocalStorage() {
         let localItems = window.localStorage.getItem('todos');
 
         // Check for larger than 2 => empty array in json string
@@ -357,7 +368,6 @@ class TodoMenu extends BaseModule {
             fetch('./data/todos.json')
                 .then(response => response.json())
                 .then(this._setTodos.bind(this));
-            // Todo: Handle errors
         }
     }
 
